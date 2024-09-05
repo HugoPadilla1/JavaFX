@@ -68,4 +68,10 @@ public class Team {
         }
         this.returningPlayers = returningPlayers;
     }
+
+    @Override
+    public String toString() {
+        return "The " + teamName + " have a record of " + teamWins + "-" + teamLosses + ", with \n" + returningPlayers +
+                " returning players and their mascot being the " + mascot + ".";
+    }
 }

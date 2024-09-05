@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,31 +31,26 @@ public class TeamEntry extends Application{
         Label teamNameLabel = new Label("Team Name:");
         teamNameField = new TextField();
         HBox teamNameBox = new HBox(10, teamNameLabel, teamNameField);
-        teamNameBox.setAlignment(Pos.CENTER_LEFT);
 
         // Last Year's Wins
         Label winsLabel = new Label("Last Year's Wins:");
         winsField = new TextField();
         HBox winsBox = new HBox(10, winsLabel, winsField);
-        winsBox.setAlignment(Pos.CENTER_LEFT);
 
         // Last Year's Losses
         Label lossesLabel = new Label("Last Year's Losses:");
         lossesField = new TextField();
         HBox lossesBox = new HBox(10, lossesLabel, lossesField);
-        lossesBox.setAlignment(Pos.CENTER_LEFT);
 
         // Mascot
         Label mascotLabel = new Label("Mascot:");
         mascotField = new TextField();
         HBox mascotBox = new HBox(10, mascotLabel, mascotField);
-        mascotBox.setAlignment(Pos.CENTER_LEFT);
 
         // Returning Players
         Label returningPlayersLabel = new Label("Returning Players:");
         returningPlayersField = new TextField();
         HBox returningPlayersBox = new HBox(10, returningPlayersLabel, returningPlayersField);
-        returningPlayersBox.setAlignment(Pos.CENTER_LEFT);
 
         // Message Label
         messageLabel = new Label();
@@ -70,7 +64,6 @@ public class TeamEntry extends Application{
         cancelButton.setOnAction(e -> clearFields());
 
         HBox buttonBox = new HBox(10, okButton, cancelButton);
-        buttonBox.setAlignment(Pos.CENTER);
 
         // Main Layout
         VBox mainLayout = new VBox(15);
