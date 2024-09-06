@@ -1,3 +1,16 @@
+/**Class: TeamEntry
+ * @author Hugo
+ * @version 1.0
+ * Course: ITEC 3150 Fall 2024
+ * Written: September 5th, 2024
+ *
+ * This class – This is our TeamEntry, which utilizes JavaFX in order to present a GUI to the end-user.
+ * This GUI contains boxes that are used for filling in all attributes for the required Team object.
+ * Each box is spaced and their are two buttons used for confirming or clearing the fields.
+ * There are three cases of error, being that our integers are not integers, and each exception for each attribute.
+ * In addition to this, there is an unexpected error in case I missed anything.
+ * These exceptions are caught and displayed to the end user.
+ */
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,7 +37,7 @@ public class TeamEntry extends Application{
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Team Entry Dialog");
 
-        // Prompt Label
+        // Prompt Label - For entering information.
         Label promptLabel = new Label("Enter Team Information:");
 
         // Team Name
@@ -111,6 +124,7 @@ public class TeamEntry extends Application{
         }
     }
 
+    // Clears the fields if the button is hit.
     private void clearFields() {
         teamNameField.clear();
         winsField.clear();
@@ -119,6 +133,8 @@ public class TeamEntry extends Application{
         returningPlayersField.clear();
         messageLabel.setText("");
     }
+
+    // Presents the details too the end user after button press.
 
     private void showTeamDetails(Team team) {
         Stage detailStage = new Stage();

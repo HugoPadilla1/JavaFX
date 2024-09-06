@@ -1,3 +1,14 @@
+/**Class: Team
+ * @author Hugo Padilla
+ * @version 1.0
+ * Course: ITEC 3150 Fall 2024
+ * Written: September 5th, 2024
+ *
+ * This class – This class is our Team object which has teamName, teamWins, teamLosses, mascot, and returningPlayers.
+ * The constructor utilizes the setters which each throw exceptions based on the validations required.
+ * Each attribute for Team has exceptions to look for, as well as the Team object which checks for a total of 12 wins and losses combined.
+ * The toString puts everything into words and displays after being initialized.
+ */
 public class Team {
     public String teamName;
     public int teamWins;
@@ -32,7 +43,10 @@ public class Team {
         return teamWins;
     }
 
-    public void setTeamWins(int teamWins) {
+    public void setTeamWins(int teamWins) throws TeamValidationException{
+        if (teamWins < 0 || teamWins > 12){
+            throw new TeamValidationException("Wins must be between 0-12.");
+        }
         this.teamWins = teamWins;
     }
 
