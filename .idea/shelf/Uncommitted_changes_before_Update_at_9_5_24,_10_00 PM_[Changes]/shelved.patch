@@ -1,0 +1,55 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"8fedb5e0-77de-4274-a50a-ce7feefc5bee\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/.gitignore\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/JavaFX.iml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Login.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/LoginController.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/ShoppingCart.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Team.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/TeamEntry.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/TeamValidationException.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/User.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/login.fxml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"FxmlFile\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2ledCtUq6MptrxiuIAELYgNBnLC\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/nuthugo/IdeaProjects/JavaFX/src&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.Login\">\n    <configuration name=\"Login\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"Login\" />\n      <module name=\"JavaFX\" />\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"JavaFX\" />\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TeamEntry\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"TeamEntry\" />\n      <module name=\"JavaFX\" />\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration default=\"true\" type=\"Application\" factoryName=\"Application\">\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"JavaFX\" />\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Login\" />\n        <item itemvalue=\"Application.TeamEntry\" />\n        <item itemvalue=\"Application.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"8fedb5e0-77de-4274-a50a-ce7feefc5bee\" name=\"Changes\" comment=\"\" />\n      <created>1725544352741</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1725544352741</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 87617eb30d5f0a03471f9f79a6b01c4fe185cf92)
++++ b/.idea/workspace.xml	(date 1725568753214)
+@@ -4,22 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/JavaFX.iml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/LoginController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ShoppingCart.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Team.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/TeamEntry.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/TeamValidationException.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/login.fxml" afterDir="false" />
++    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="amend">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -122,7 +108,19 @@
+       <option name="presentableId" value="Default" />
+       <updated>1725544352741</updated>
+     </task>
++    <task id="LOCAL-00001" summary="amend">
++      <created>1725567006948</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1725567006948</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="amend" />
++    <option name="LAST_COMMIT_MESSAGE" value="amend" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />

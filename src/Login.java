@@ -21,7 +21,7 @@ public class Login extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Login");
         GridPane pane = new GridPane();
-        pane.setAlignment(Pos.CENTER);
+//        pane.setAlignment(Pos.CENTER);
         pane.setHgap(10);
         pane.setVgap(10);
         pane.setPadding(new Insets(25,25, 25, 25));
@@ -64,7 +64,7 @@ public class Login extends Application {
         });
 
         HBox btnHb = new HBox(10);
-        btnHb.setAlignment(Pos.BOTTOM_RIGHT);
+//        btnHb.setAlignment(Pos.BOTTOM_RIGHT);
         btnHb.getChildren().addAll(loginBtn,cancelBtn);
 
         pane.add(btnHb, 1,3);
