@@ -10,5 +10,37 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="TeamControllerFXML"
             prefHeight="400.0" prefWidth="600.0">
+        <VBox alignment="CENTER" spacing="10" stylesheets="style.css" styleClass="root">
+            <Label text="Please enter the Team Information" />
 
+            <HBox spacing="10">
+                <Label text="Name:" />
+                <TextField fx:id="nameTF" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Last Year's Wins:" />
+                <TextField fx:id="winsTF" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Last Year's Losses:" />
+                <TextField fx:id="lossesTF" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Mascot:" />
+                <TextField fx:id="mascotTF" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Returning Players:" />
+                <TextField fx:id="returningTF" />
+            </HBox>
+
+            <HBox spacing="20">
+                <Button text="OK" onAction="#generate"/>
+                <Button text="Cancel" onAction="#cancel"/>
+            </HBox>
+        </VBox>
 </GridPane>

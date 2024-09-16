@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="finished hw">
-      <change afterPath="$PROJECT_DIR$/src/TeamControllerFXML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/teamEntry.fxml" afterDir="false" />
+    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="most update">
+      <change afterPath="$PROJECT_DIR$/src/TeamGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grey-background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grey-background2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_5_24,_10_00 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_5_24__10_00PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TeamControllerFXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamControllerFXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/teamEntry.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/teamEntry.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,7 +59,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginFXML">
+  <component name="RunManager" selected="Application.TeamGenerator">
     <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -101,6 +106,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TeamGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="TeamGenerator" />
+      <module name="JavaFX" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -113,6 +128,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TeamGenerator" />
         <item itemvalue="Application.LoginFXML" />
         <item itemvalue="Application.TeamEntry" />
         <item itemvalue="Application.Login" />
@@ -136,12 +152,20 @@
       <option name="project" value="LOCAL" />
       <updated>1725588710662</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="most update">
+      <created>1726173017347</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726173017347</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished hw" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished hw" />
+    <MESSAGE value="most update" />
+    <option name="LAST_COMMIT_MESSAGE" value="most update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
