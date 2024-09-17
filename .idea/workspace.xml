@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="most update">
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Library.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/LibraryDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Media.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Music.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Search.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/Video.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/library.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/media.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICs/IC3/search.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamControllerFXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamControllerFXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +58,27 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/ICs/IC3" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TeamGenerator">
+  <component name="RunManager" selected="Application.LibraryDriver">
+    <configuration name="LibraryDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="ICs.IC3.LibraryDriver" />
+      <module name="JavaFX" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ICs.IC3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -76,16 +101,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="JavaFX" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LibraryDriver" />
         <item itemvalue="Application.TeamGenerator" />
         <item itemvalue="Application.LoginFXML" />
         <item itemvalue="Application.TeamEntry" />
         <item itemvalue="Application.Login" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726448678382</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="most update">
+      <created>1726453203296</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726453203296</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
