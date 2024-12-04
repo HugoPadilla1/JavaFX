@@ -1,5 +1,20 @@
 package FinalExtraCredit;
 
+/**
+ * Class: Main
+ * Package: FinalExtraCredit
+ * Author: Hugo Padilla
+ * Version: 1.0
+ * Course: ITEC 3150 Fall 2024
+ * Written: December 3rd, 2024.
+ *
+ * This class – The `Main` class is a JavaFX application that provides a graphical user interface (GUI)
+ * for managing game characters. It allows users to create, display, save, and load game characters with attributes
+ * such as name, type, hit points, armor class, damage, weapon, spell, and special abilities. The program also validates each case
+ * to ensure a proper character creation.
+ *
+ */
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
