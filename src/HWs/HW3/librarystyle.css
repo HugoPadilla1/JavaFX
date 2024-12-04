@@ -1,11 +1,11 @@
-.root{
--fx-background-image: url('grey-background2.png');
--fx-background-repeat: no-repeat;
--fx-background-size: cover;
+.root {
+    -fx-background-image: url("books.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
 }
-
 .label{
--fx-font-family: "Cursive";
+-fx-text-fill: black;
 -fx-font-size: 18px;
 -fx-font-weight: bold;
 }
