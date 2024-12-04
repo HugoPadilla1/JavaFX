@@ -1,6 +1,7 @@
 package FinalExtraCredit;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -72,7 +73,7 @@ public class Main extends Application {
         Button displayButton = new Button("Display Characters");
         displayButton.setOnAction(e -> displayCharacters());
         Button exitButton = new Button("Exit");
-        exitButton.setOnAction(e -> primaryStage.close());
+        exitButton.setOnAction(e -> Platform.exit());
         buttonBox.getChildren().addAll(addButton, displayButton, saveButton, readButton, exitButton);
 
         // Main Layout

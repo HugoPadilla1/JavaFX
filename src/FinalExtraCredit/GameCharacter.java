@@ -99,8 +99,14 @@ public class GameCharacter implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GameCharacter: Name -  " + name + " Type - " + type + " Hit Points - " + hitPoints +
-				" Armor Class - " + armorClass + " Damage - " + damage + " Weapon - " + weapon +
-				"\n Abilities\n" + specialAbility;
+		if (type == CharacterType.MAGIC_USER){
+			return type + ": Name -  " + name + " Hit Points - " + hitPoints +
+					" Armor Class - " + armorClass + " Damage - " + damage + " Spell - " + spell +
+					"\nAbilities\n" + specialAbility;
+		} else {
+			return type + ": Name -  " + name + " Hit Points - " + hitPoints +
+					" Armor Class - " + armorClass + " Damage - " + damage + " Weapon - " + weapon +
+					"\nAbilities\n" + specialAbility;
+		}
 	}
 }
