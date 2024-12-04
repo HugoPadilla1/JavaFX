@@ -1,0 +1,246 @@
+Index: src/MidtermFinalChooser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/MidtermFinalChooser.java b/src/MidtermFinalChooser.java
+new file mode 100644
+--- /dev/null	(date 1727377162180)
++++ b/src/MidtermFinalChooser.java	(date 1727377162180)
+@@ -0,0 +1,22 @@
++import javafx.stage.FileChooser;
++import javafx.stage.Stage;
++import java.io.File;
++public class MidtermFinalChooser {
++    public File showFileChooser(Stage stage) {
++        FileChooser fileChooser = new FileChooser();
++        fileChooser.setTitle("File Opener");
++
++//        // Optional: Set initial directory
++//        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
++//
++//        // Optional: Add file extension filters
++//        fileChooser.getExtensionFilters().addAll(
++//                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
++//                new FileChooser.ExtensionFilter("All Files", "*.*")
++//        );
++
++        // Show the dialog and get the selected file
++        File selectedFile = fileChooser.showOpenDialog(stage);
++        return selectedFile;  // Return the selected file object
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8fedb5e0-77de-4274-a50a-ce7feefc5bee\" name=\"Changes\" comment=\"most update\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/ICs/IC4/CourseManager.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/ICs/IC4/CourseManagerMain.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2ledCtUq6MptrxiuIAELYgNBnLC\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"/Users/nuthugo/IdeaProjects/JavaFX/src\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"preferences.JavaFX\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/src/ICs/IC3\" />\r\n      <recent name=\"$PROJECT_DIR$/src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.CourseManagerMain\">\r\n    <configuration name=\"CourseManagerMain\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ICs.IC4.CourseManagerMain\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"ICs.IC4.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LibraryDriver\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ICs.IC3.LibraryDriver\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"ICs.IC3.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginFXML\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Login.LoginFXML\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Login.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TeamEntry\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"TeamEntry\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TeamGenerator\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"TeamGenerator\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-21\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"JavaFX\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.CourseManagerMain\" />\r\n      <item itemvalue=\"Application.LibraryDriver\" />\r\n      <item itemvalue=\"Application.LoginFXML\" />\r\n      <item itemvalue=\"Application.TeamGenerator\" />\r\n      <item itemvalue=\"Application.TeamEntry\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.CourseManagerMain\" />\r\n        <item itemvalue=\"Application.LibraryDriver\" />\r\n        <item itemvalue=\"Application.TeamGenerator\" />\r\n        <item itemvalue=\"Application.LoginFXML\" />\r\n        <item itemvalue=\"Application.TeamEntry\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"8fedb5e0-77de-4274-a50a-ce7feefc5bee\" name=\"Changes\" comment=\"\" />\r\n      <created>1725544352741</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1725544352741</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"finished hw\">\r\n      <created>1725588710662</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725588710662</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"most update\">\r\n      <created>1726173017347</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1726173017347</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"most update\">\r\n      <created>1726448678382</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1726448678382</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"most update\">\r\n      <created>1726453203296</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1726453203296</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"most update\">\r\n      <created>1726583862457</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1726583862457</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"finished hw\" />\r\n    <MESSAGE value=\"most update\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"most update\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2cfbfa5c4778bc4356c0d7eec62a5f164278d6ee)
++++ b/.idea/workspace.xml	(date 1733270504319)
+@@ -4,9 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="most update">
+-      <change afterPath="$PROJECT_DIR$/src/ICs/IC4/CourseManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/ICs/IC4/CourseManagerMain.java" afterDir="false" />
++    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="nice">
++      <change afterPath="$PROJECT_DIR$/src/FileChooserTest.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/MidtermFinalChooser.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -34,18 +34,22 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "last_opened_file_path": "/Users/nuthugo/IdeaProjects/JavaFX/src",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "preferences.JavaFX"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/nuthugo/IdeaProjects/JavaFX/src&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/src" />
+@@ -55,7 +59,7 @@
+       <recent name="$PROJECT_DIR$/src" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.CourseManagerMain">
++  <component name="RunManager" selected="Application.FileChooserTest">
+     <configuration name="CourseManagerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+@@ -68,6 +72,16 @@
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="FileChooserTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
++      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
++      <option name="MAIN_CLASS_NAME" value="FileChooserTest" />
++      <module name="JavaFX" />
++      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -104,16 +118,6 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TeamEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+-      <option name="MAIN_CLASS_NAME" value="TeamEntry" />
+-      <module name="JavaFX" />
+-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="TeamGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+@@ -135,19 +139,19 @@
+       </method>
+     </configuration>
+     <list>
++      <item itemvalue="Application.FileChooserTest" />
+       <item itemvalue="Application.CourseManagerMain" />
+       <item itemvalue="Application.LibraryDriver" />
+       <item itemvalue="Application.LoginFXML" />
+       <item itemvalue="Application.TeamGenerator" />
+-      <item itemvalue="Application.TeamEntry" />
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.FileChooserTest" />
+         <item itemvalue="Application.CourseManagerMain" />
+         <item itemvalue="Application.LibraryDriver" />
+         <item itemvalue="Application.TeamGenerator" />
+         <item itemvalue="Application.LoginFXML" />
+-        <item itemvalue="Application.TeamEntry" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -159,6 +163,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1725544352741</updated>
++      <workItem from="1727377081816" duration="956000" />
+     </task>
+     <task id="LOCAL-00001" summary="finished hw">
+       <created>1725588710662</created>
+@@ -195,13 +200,24 @@
+       <option name="project" value="LOCAL" />
+       <updated>1726583862457</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="nice">
++      <created>1727310722117</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1727310722118</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="finished hw" />
+     <MESSAGE value="most update" />
+-    <option name="LAST_COMMIT_MESSAGE" value="most update" />
++    <MESSAGE value="nice" />
++    <option name="LAST_COMMIT_MESSAGE" value="nice" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: src/FileChooserTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/FileChooserTest.java b/src/FileChooserTest.java
+new file mode 100644
+--- /dev/null	(date 1727377447807)
++++ b/src/FileChooserTest.java	(date 1727377447807)
+@@ -0,0 +1,46 @@
++import javafx.application.Application;
++import javafx.scene.Scene;
++import javafx.scene.control.Button;
++import javafx.scene.layout.VBox;
++import javafx.stage.FileChooser;
++import javafx.stage.Stage;
++import java.io.File;
++
++public class FileChooserTest extends Application {
++
++    public static void main(String[] args) {
++        launch(args);
++    }
++
++    @Override
++    public void start(Stage primaryStage) {
++        primaryStage.setTitle("FileChooser Test");
++        // Implementing the button to call FileChooser
++        Button openButton = new Button("Open FileChooser");
++        openButton.setOnAction(e -> {
++            File selectedFile = showFileChooser(primaryStage);  // Call the FileChooser method
++            if (selectedFile != null) {
++                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
++            } else {
++                System.out.println("No file selected");
++            }
++        });
++
++        // Setting the scene, as well as, VBOX.
++        VBox layout = new VBox(20);
++        layout.getChildren().add(openButton);
++
++        Scene scene = new Scene(layout, 300, 200);
++        primaryStage.setScene(scene);
++        primaryStage.show();
++    }
++
++    // Method to open FileChooser and return the selected file
++    public File showFileChooser(Stage stage) {
++        FileChooser fileChooser = new FileChooser();
++        fileChooser.setTitle("Open File");
++
++        // Show the file chooser dialog
++        return fileChooser.showOpenDialog(stage);  // Return the selected file
++    }
++}
+\ No newline at end of file

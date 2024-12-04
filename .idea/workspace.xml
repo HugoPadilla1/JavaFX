@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="most update">
-      <change afterPath="$PROJECT_DIR$/src/ICs/IC4/CourseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICs/IC4/CourseManagerMain.java" afterDir="false" />
+    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="nice">
+      <change afterPath="$PROJECT_DIR$/src/FinalExtraCredit/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,18 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nuthugo/IdeaProjects/JavaFX/src&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/nuthugo/IdeaProjects/JavaFX/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -55,7 +56,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BookEntry">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="BookEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -104,15 +105,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginFXML" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Login.LoginFXML" />
+      <option name="MAIN_CLASS_NAME" value="FinalExtraCredit.Main" />
       <module name="JavaFX" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Login.*" />
+          <option name="PATTERN" value="FinalExtraCredit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,18 +143,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.BookEntry" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.CourseManagerMain" />
       <item itemvalue="Application.LibraryDriver" />
-      <item itemvalue="Application.LoginFXML" />
       <item itemvalue="Application.TeamGenerator" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.BookEntry" />
         <item itemvalue="Application.LibraryDriver" />
         <item itemvalue="Application.CourseManagerMain" />
         <item itemvalue="Application.TeamGenerator" />
-        <item itemvalue="Application.LoginFXML" />
       </list>
     </recent_temporary>
   </component>
@@ -201,13 +202,21 @@
       <option name="project" value="LOCAL" />
       <updated>1726583862457</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="nice">
+      <created>1733270716004</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733270716004</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished hw" />
     <MESSAGE value="most update" />
-    <option name="LAST_COMMIT_MESSAGE" value="most update" />
+    <MESSAGE value="nice" />
+    <option name="LAST_COMMIT_MESSAGE" value="nice" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
