@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="nice" />
+    <list default="true" id="8fedb5e0-77de-4274-a50a-ce7feefc5bee" name="Changes" comment="nice">
+      <change afterPath="$PROJECT_DIR$/src/TextBasedGame/AnimalAdventureGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TextBasedGame/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TextBasedGame/Rooms.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2024_7_02_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2024_7_02_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,30 +37,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/nuthugo/IdeaProjects/JavaFX/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nuthugo/IdeaProjects/JavaFX/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\padil\IdeaProjects\JavaFX\src\TextBasedGame" />
+      <recent name="C:\Users\padil\IdeaProjects\JavaFX\src" />
       <recent name="$PROJECT_DIR$/src/ICs/IC3" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.AnimalAdventureGame">
+    <configuration name="AnimalAdventureGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="TextBasedGame.AnimalAdventureGame" />
+      <module name="JavaFX" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TextBasedGame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BookEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -118,16 +145,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TeamGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="TeamGenerator" />
-      <module name="JavaFX" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -139,19 +156,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.AnimalAdventureGame" />
       <item itemvalue="Application.BookEntry" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.CourseManagerMain" />
       <item itemvalue="Application.LibraryDriver" />
-      <item itemvalue="Application.TeamGenerator" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AnimalAdventureGame" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.BookEntry" />
         <item itemvalue="Application.LibraryDriver" />
         <item itemvalue="Application.CourseManagerMain" />
-        <item itemvalue="Application.TeamGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -163,6 +180,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1725544352741</updated>
+      <workItem from="1733279143914" duration="1590000" />
+      <workItem from="1756495571522" duration="1285000" />
     </task>
     <task id="LOCAL-00001" summary="finished hw">
       <created>1725588710662</created>
@@ -227,8 +246,18 @@
       <option name="project" value="LOCAL" />
       <updated>1733275674918</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="nice">
+      <created>1733276288668</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733276288668</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished hw" />
