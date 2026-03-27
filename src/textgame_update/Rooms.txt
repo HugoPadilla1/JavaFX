@@ -1,0 +1,6 @@
+1,Lion Enclosure,You see a mighty lion lounging under the sun.,NORTH:2,EAST:3
+2,Elephant Habitat,An elephant sprays water with its trunk.,SOUTH:1,EAST:4
+3,Giraffe Tower,A giraffe is nibbling on tall leaves.,WEST:1,NORTH:4
+4,Penguin Pool,Happy penguins are sliding into the water.,WEST:2,SOUTH:3,EAST:5
+5,Reptile House,Snakes and lizards slither quietly.,WEST:4,NORTH:6
+6,Tropical Aviary,Colorful birds fly above you in the trees.,SOUTH:5
