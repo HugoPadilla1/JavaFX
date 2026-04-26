@@ -1,0 +1,46 @@
+ID~Name~Category~Description~HP~DMG~DEF~SPD~STATUS~DURATION~SPECIAL
+
+# =========================
+# CONSUMABLES
+# =========================
+
+I00~Bandages~Consumable~Sterile gauze used to wrap wounds and stop bleeding.~15~0~0~0~NONE~0~NONE
+I01~Antidote~Consumable~Neutralizes toxins and removes poison.~5~0~0~0~REMOVE_POISON~0~NONE
+I02~Nerve Tonic~Consumable~Restores sensation and reflexes.~5~0~0~5~REMOVE_PARALYSIS~3~SPD_BOOST_50
+I03~Elixir~Consumable~Boosts combat ability.~10~0~5~0~NONE~3~ATK_DEF_BOOST_50
+I04~FirstAidKit~Consumable~Major recovery medical kit.~50~0~0~0~NONE~0~NONE
+I05~Syringe~Consumable~Throwable syringe dealing damage.~0~-10~0~0~PARALYZE_CHANCE_20~0~NONE
+
+# =========================
+# WEAPONS
+# =========================
+
+W00~Scalpel~Weapon~Precision surgical blade.~0~10~0~0~NONE~0~NONE
+W01~IVPole~Weapon~Heavy medical stand weapon.~0~18~0~0~NONE~0~NONE
+W02~Caduceus~Weapon~Balanced staff weapon.~10~28~0~0~NONE~0~NONE
+W03~SalineBag~Weapon~Blunt weapon.~0~35~0~0~NONE~0~NONE
+
+# =========================
+# ARMOR / WEARABLES
+# =========================
+
+AR00~DoctorsCoat~Wearable~Light protective coat.~10~0~7~0~NONE~0~NONE
+AR01~MedicVest~Wearable~Reinforced armor vest.~20~0~20~0~NONE~0~NONE
+AR02~HazmatSuit~Wearable~Poison-resistant suit.~30~0~25~-5~POISON_RESIST_50~0~NONE
+
+# =========================
+# ACCESSORIES (also wearable)
+# =========================
+
+AC00~KineticBracers~Wearable~Speed-enhancing braces.~5~0~0~7~NONE~0~NONE
+AC01~VelocitySplints~Wearable~Extreme mobility gear.~0~0~0~20~NONE~0~NONE
+
+# =========================
+# KEY ITEMS
+# =========================
+
+K00~Keycard1~KeyItem~Unlocks first floor.~0~0~0~0~PUZ_01~0~ACCESS_F1
+K01~Keycard2~KeyItem~Unlocks second floor.~0~0~0~0~PUZ_02~0~ACCESS_F2
+K02~Backpack~KeyItem~Increases inventory capacity.~0~0~0~0~NONE~0~INV_CAP_20
+K03~Retractor~KeyItem~Tool for opening mechanisms.~0~0~0~0~PUZ_05~0~UNLOCK
+K04~PatientZeroFile~KeyItem~Medical file with condition details.~0~0~0~0~PUZ_03~0~LORE

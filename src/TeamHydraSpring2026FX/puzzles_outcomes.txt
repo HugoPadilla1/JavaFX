@@ -1,0 +1,8 @@
+PUZ_01,Power restored door unlocked upstairs,Wrong order,Monster appears if attempts 0,Unlock entrance and parking lot
+PUZ_02,Drawer opens get keycard floor 2,Incorrect code,Monster encounter reset attempts,Keycard second floor
+PUZ_03,Patient zero file confirmed,Incorrect label,Monster encounter reset attempts,Clue note patient zero
+PUZ_04,Secret vent entrance revealed,Incorrect alignment,Monster encounter reset attempts,Access secret lab
+PUZ_05,Cabinet opens hazmat suit,Wrong item,Monster encounter reset attempts,Hazmat suit
+PUZ_06,Match confirmed cabinet unlocks,Mismatch,Monster encounter reset attempts,First aid kit and syringe
+PUZ_07,Access granted floor 2,Access denied,Monster encounter reset attempts,Second floor access
+PUZ_08,Access granted floor 1,Access denied,Monster encounter reset attempts,First floor access

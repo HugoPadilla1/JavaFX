@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78ea2413-7380-4f83-a5d7-e4db4291f65d" name="Changes" comment="hello">
-      <change afterPath="$PROJECT_DIR$/src/LetterCubed/LetterCubedMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LetterCubed/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_24,_8_00 PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_24__8_00PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_24,_8_03 AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_24__8_03AM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="78ea2413-7380-4f83-a5d7-e4db4291f65d" name="Changes" comment="animal adventure game update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextBasedGame/AnimalAdventureGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextBasedGame/AnimalAdventureGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextBasedGame/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextBasedGame/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TextBasedGame.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +38,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/padil/Downloads/letterboxd-cli-java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/padil/IdeaProjects/JavaFX/src/TeamHydraSpring2026FX&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
@@ -67,16 +60,16 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.textgame_update.AnimalAdventureGame">
-    <configuration name="AnimalAdventureGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.HydraGameApp">
+    <configuration name="GameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="TextBasedGame.AnimalAdventureGame" />
+      <option name="MAIN_CLASS_NAME" value="TeamHydraSpring2026FX.GameTester" />
       <module name="JavaFX" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="TextBasedGame.*" />
+          <option name="PATTERN" value="TeamHydraSpring2026FX.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,15 +77,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookEntry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="HydraGameApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="HWs.HW3.BookEntry" />
+      <option name="MAIN_CLASS_NAME" value="TeamHydraSpring2026FX.HydraGameApp" />
       <module name="JavaFX" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/TeamHydraSpring2026FX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="HWs.HW3.*" />
+          <option name="PATTERN" value="TeamHydraSpring2026FX.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -159,19 +153,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.GameTester" />
+      <item itemvalue="Application.HydraGameApp" />
       <item itemvalue="Application.TextBasedGameUpdated.AnimalAdventureGame" />
       <item itemvalue="Application.textgame_update.AnimalAdventureGame" />
-      <item itemvalue="Application.AnimalAdventureGame" />
-      <item itemvalue="Application.BookEntry" />
       <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HydraGameApp" />
+        <item itemvalue="Application.GameTester" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.textgame_update.AnimalAdventureGame" />
         <item itemvalue="Application.TextBasedGameUpdated.AnimalAdventureGame" />
-        <item itemvalue="Application.AnimalAdventureGame" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.BookEntry" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +184,10 @@
       <workItem from="1771014973729" duration="1052000" />
       <workItem from="1771016583019" duration="140000" />
       <workItem from="1771016730471" duration="798000" />
-      <workItem from="1774637774923" duration="2353000" />
+      <workItem from="1774637774923" duration="2660000" />
+      <workItem from="1776826041982" duration="626000" />
+      <workItem from="1777232082475" duration="134000" />
+      <workItem from="1777232271844" duration="2597000" />
     </task>
     <task id="LOCAL-00001" summary="finished hw">
       <created>1725588710662</created>
@@ -262,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733276288668</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="animal adventure game update">
+      <created>1774640285182</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774640285182</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +287,8 @@
     <MESSAGE value="finished hw" />
     <MESSAGE value="most update" />
     <MESSAGE value="nice" />
-    <option name="LAST_COMMIT_MESSAGE" value="nice" />
+    <MESSAGE value="animal adventure game update" />
+    <option name="LAST_COMMIT_MESSAGE" value="animal adventure game update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

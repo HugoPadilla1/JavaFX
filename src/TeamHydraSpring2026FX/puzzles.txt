@@ -1,0 +1,8 @@
+PUZ_01,Emergency Power,875,R16,The breaker box is dead. Enter the switch order 241,Flip switches in correct order based on number of rooms,Check the map for all floors and hidden rooms,3
+PUZ_02,Security Passcode,Elizabeth,R08,A locked drawer flashes ENTER PASSCODE,Passcode is a name of someone in hospital,Think of someone who worked throughout the hospital,4
+PUZ_03,Patient Zero File,11,R07,Filing cabinets everywhere enter patient's birth month,Patient is later Scorpio month,Later Scorpio month hint,3
+PUZ_04,X-Ray Alignment,Osteopenia,R09,Align X-ray showing low bone density,Darker bones indicate condition,Check patient zero file,3
+PUZ_05,OR Cabinet Jam,Use retractor,R14,Cabinet jammed shut type item to pry open,Need tool from lab,Check the lab,2
+PUZ_06,Pharmacy Inventory Match,Ketamine,R15,Rearrange ETAMKNEI,Unscramble medication name,Elon Musk horse tranquilizer,3
+PUZ_07,Stairwell Floor 2,use keycard second floor,R05,Keycard reader access denied,Use correct keycard,Check security room,5
+PUZ_08,Stairwell Floor 1,use keycard first floor,R12,Keycard reader access denied,Use correct keycard,Check OR,5

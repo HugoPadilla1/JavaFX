@@ -1,0 +1,9 @@
+monsterID,name,desc,status,isboss,hp,atk,def,spd
+1~Undead Patient~A patient who died but now walks around the hospital and is looking for a way out.~none~false~30~25~5~1
+2~Zombie Nurse~A nurse who has become zombified. She now spreads disease and does everything in her utmost to inflict it. Watch out for poison attacks!~none~false~25~20~3~8
+3~Sick Dog~It used to be a service dog that brought cheer. Now that it is inflicted, it mauls all life with its speedy blows.~none~false~40~30~5~15
+4~Diseased Technician~Responsible for the power around the hospital. They can use lightning attacks that can cause paralysis.~none~false~60~35~10~10
+5~Ghoulish Janitor~Cleans up the halls of the hospital. It is a ghost and isn’t aware of the infection and is just trying to run from intruders.~none~false~55~25~0~18
+6~Angel of Death~A security guard whose sworn duty is to protect the hospital from intruders. Powered by the infection, he has assumed the role of a guardian and protects the living dead who reside inside.~none~true~100~40~5~9
+7~The Pain Giver~A physical therapist. In life, he aided people with physical ailments and was able to restore movement to their bodies. With his techniques, he can perform exceptionally on the battlefield. He can deliver mighty blows to deliver devastating strikes.~none~true~150~45~25~18
+8~Plague Doctor~The doctor is responsible for the outbreak. In his hands he wields poisonous bombs and a terrifying bone saw.~none~true~200~40~18~25

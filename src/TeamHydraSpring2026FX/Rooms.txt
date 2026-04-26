@@ -1,0 +1,158 @@
+# Rooms.txt - Room definitions for the game
+# Format: ROOM:<id>:<name>:<isSafe> | DESC:<text> | DOOR:<dir>:<text>
+#         EXIT:<dir>:<destId> | ITEM:<id> | MONSTER:<id> | PUZZLE:<id> | END
+# Directions: N, E, S, W
+
+ROOM:R01:Storage Closet:false
+DESC:A small rectangular walk-in storage closet. A small light bulb attached to the ceiling lets you see into the room. There are several supply shelves lined up on the walls.
+DOOR:S:A small wooden door on the south wall.
+EXIT:S:R02
+END
+
+ROOM:R02:Private Patient Room:true
+DESC:A nicely furnished room with a plush bed in the center. Large windows allow light to enter the room. Looking out of them, you notice you are on the third floor of the hospital building. The tall, bulky life support machine with lots of wires stands next to the bed. The bed is soft, you feel like you can catch some z's with it.
+DOOR:N:A simple wooden door on the north wall.
+DOOR:S:Tall wooden double doors in the south wall.
+EXIT:N:R01
+EXIT:S:R05
+END
+
+ROOM:R03:Janitorial Closet:false
+DESC:A small, dimly lit rectangular room. It smells slightly damp and of chemical cleaning supplies. Broomsticks and mops hanging on the wall, and supply boxes on the tiled floor. There's a photo hung up in the corner of the room of what appears to be the janitor, with a tattoo of the name "Elizabeth" on his arm.
+DOOR:E:A plain wooden door on the east wall.
+EXIT:E:R04
+END
+
+ROOM:R04:Public Patient Ward:false
+DESC:A large, long hospital ward. The lighting is uneven and flickering in some parts of the room. Several rows of hospital beds fill the space. Each bed has a small bedside table beside it, and some have IV stands next to them. The space is open without any separators between the beds.
+DOOR:W:A plain wooden door on the west wall with a metal sign with a cleaning symbol on it.
+DOOR:E:Giant double doors on the east wall.
+EXIT:W:R03
+EXIT:E:R05
+END
+
+ROOM:R05:Upper Lobby:false
+DESC:A giant open spaced hospital lobby with tall ceilings. There are several seating areas with couches, chairs and tables. In the corner of the room there appears to be some steps to the lower floor.
+DOOR:N:Small wooden double doors on the north wall.
+DOOR:E:Giant double doors on the east wall.
+DOOR:S:A metal door on the south wall.
+DOOR:W:Giant double doors on the west wall.
+EXIT:N:R02
+EXIT:E:R06
+EXIT:S:R08
+EXIT:W:R04
+END
+
+ROOM:R06:ICU:false
+DESC:A bright cold ICU. White marble floors reflecting the harsh ceiling fluorescent lights. Bulky hospital beds sit around next to countless machines and wires. There's a sharp smell of disinfectants in the room.
+DOOR:E:A small door on the east wall.
+DOOR:W:Giant double doors on the west wall.
+EXIT:E:R07
+EXIT:W:R05
+END
+
+ROOM:R07:Patient Records Archive:false
+DESC:A small patient records room. There are rows of shelves and drawers packed with different colored files. It smells like dust.
+DOOR:W:A small door on the west wall.
+EXIT:W:R06
+END
+
+ROOM:R08:Security Room:false
+DESC:A small dark security room. There is a large desk with a drawer in the center of the room. The walls have monitors showing the entirety of the hospital. The screens shift to different rooms every couple of seconds.
+DOOR:N:A metal door on the north wall.
+EXIT:N:R05
+END
+
+ROOM:R09:Radiology:false
+DESC:A medium sized radiology room with large imaging machines and dim lighting. A bulky x-ray machine stands in the center beside an exam table. There's a corner of the room with a control panel, separated by a glass wall.
+DOOR:S:Simple wooden double doors on the south wall.
+DOOR:W:A vent that looks suspicious is next to the floor of the room.
+EXIT:S:R12
+EXIT:W:R10
+END
+
+ROOM:R10:Secret Lab:false
+DESC:A hidden lab discovered by the secret entrance. Metal tables are scattered throughout the space, covered with equipment, research papers, and broken glass containers.
+DOOR:N:The vent you climbed out is covered in soot.
+EXIT:N:R09
+END
+
+ROOM:R11:Lab:false
+DESC:A clean bright lab with organized equipment and microscopes on clean counters. Glass cabinets line the walls, filled with jars and stacked trays. Stainless steel sinks are built into the counters with drying racks above them. Papers and lab reports are clipped to a board near the entrance.
+DOOR:E:Giant wooden double doors on the east wall.
+EXIT:E:R12
+END
+
+ROOM:R12:Midfloor Lobby:false
+DESC:A large open area with tables and chairs spread around. Carpet flooring stretches across the space with clear walkways between seating areas. Overhead lights illuminate the room. There are staircases in the corner leading up on one side to the third floor and down on the other side towards the first floor.
+DOOR:N:Simple wooden double doors on the north wall.
+DOOR:E:Giant double doors on the east wall.
+DOOR:S:Simple wooden double doors on the south wall.
+DOOR:W:Giant double doors on the west wall.
+EXIT:N:R09
+EXIT:E:R13
+EXIT:S:R15
+EXIT:W:R11
+END
+
+ROOM:R13:Locker Room:true
+DESC:A small room with rows of numbered lockers and wooden benches. There are lockers on each side of the room, some slightly dented and scratched. A few locker doors hang partially open. There are benches in the center of the room and the lighting above casts faint shadows between the narrow rows. You feel just beyond the doors to the east, that something dangerous is beyond there. You might want to prepare carefully.
+DOOR:E:Small wooden double doors on the east wall.
+DOOR:W:Giant double doors on the west wall.
+EXIT:E:R14
+EXIT:W:R12
+END
+
+ROOM:R14:OR:false
+DESC:An operating room with a steel bed in the center under large surgical lights. There are stools around the room with surgical equipment on them. The lights hang directly overhead, aimed at the center of the operating table.
+DOOR:W:Small wooden double doors on the west wall.
+EXIT:W:R13
+END
+
+ROOM:R15:Pharmacy:false
+DESC:A room with a large glass wall facing the lobby. There are shelves with bottles of pills, and injections neatly arranged behind the counter. Locked cabinets hold controlled medications. A small computer sits near the register area. The glass wall allows full visibility from the outside.
+DOOR:N:Small wooden double doors on the north wall.
+EXIT:N:R12
+END
+
+ROOM:R16:Generator Room:false
+DESC:A loud mechanical room filled with large generators and cables stretched across the ceilings and into control panels. Warning labels and hazard signs are posted near the equipment. The air feels warm from the running machinery.
+DOOR:S:Small wooden double doors on the south wall.
+EXIT:S:R19
+END
+
+ROOM:R17:Kitchen:true
+DESC:A standard kitchen connected to the cafeteria. Almost everything is made from stainless steel including the huge pots, stoves, ovens, and counters. A sink station sits along a wall next to a bench. You feel relaxed and feel like you can catch a bite to eat.
+DOOR:E:Small wooden double doors on the east wall.
+EXIT:E:R18
+END
+
+ROOM:R18:Cafeteria:false
+DESC:A large room with lots of tables and chairs. The tables are arranged in rows across the tiled floor. Some trays and cups are left behind on the surfaces. A serving counter stretches along one side of the room with glass covering the food area.
+DOOR:W:Small wooden double doors on the west wall.
+EXIT:W:R17
+END
+
+ROOM:R19:Entrance Lobby:false
+DESC:A large open spaced room with a front desk and chairs lined up in rows. The polished floor reflects the overhead lighting. The front desk sits directly across from the main entrance doors. Large glass and wood doors lead outside to the parking lot. The space feels open with clear visibility in every direction.
+DOOR:N:Small wooden double doors on the north wall.
+DOOR:E:Giant double doors on the east wall.
+DOOR:S:Electric glass exit doors on the south wall leading to parking lot. There is a terrifying presence that fumigates the area. You need to be prepared if you leave there.
+DOOR:W:Small wooden double doors on the west wall.
+EXIT:N:R16
+EXIT:E:R20
+EXIT:S:R21
+EXIT:W:R18
+END
+
+ROOM:R20:Emergency Room:false
+DESC:A large room with multiple hospital beds with curtains separating patients. Bright ceiling lights illuminate the entire room. Medical carts and rolling trays are positioned beside each bed. The layout allows quick and efficient movement between patients.
+DOOR:W:Giant wooden double doors on the west wall.
+EXIT:W:R19
+END
+
+ROOM:R21:Parking Lot:false
+DESC:Large parking lot where the final battle takes place, fenced on all sides with a gate. Faded parking lines mark empty spaces across the asphalt. Several old vehicles sit scattered throughout the lot. Tall light poles stand along the perimeter. The heavy metal gate blocks the only clear exit.
+DOOR:N:Electric glass and wood double doors on the north wall.
+EXIT:N:R19
+END

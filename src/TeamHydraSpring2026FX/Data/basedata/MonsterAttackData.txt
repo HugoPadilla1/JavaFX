@@ -1,0 +1,23 @@
+attackID~attackName~multiplier~statusEffect~attackChance~flavorText
+0~Idle~0~none~10~Your enemy studies you...
+1~Zombie Punch~1~none~50~'Where am it? Who are you?'
+2~Zombie Kick~1~none~40~'GRAAAHHH!'
+3~Scalpel Attack~1~none~40~'Don't worry, I'll make sure it is painless. Graaahhhh!'
+4~Poisoned Scalpel~1~paralysis~50~Zombie nurse attacks with a poisoned scalpel!
+5~Speed of Light~1~none~40~The dog charges at you like a bolt of lightning.
+6~Dog Bite~1~none~50~'WOOF! GRRRR!'
+7~Hammer Blow~1~none~50~'Can you keep up with me? Hahaha'
+8~Electric Wrench~1~paralysis~50~Diseased Technician attacks with a charged attack
+9~Stay Away!~1~none~50~'Get away from here. Shoo!'
+10~Scare~0~special1~40~'Boo!' You felt your spirit draining.
+11~Baton Strike~1~none~40~'I will protect this building with my life. GRRRAA!'
+12~Mighty Blow~1.5~special2~30~The Angel of Death prepares for a powerful strike.
+13~Deadly Dance~0.6~special3~20~Angel of Death attacks with a multi-hitting attack.
+14~Supreme Suplex~1~paralysis~50~'I will end you.'
+15~Attack Buff~0~special4~10~'HAHAHAHA' \nThe Pain Giver strength increased!
+16~Physical Therapy~0~heal~30~The Pain Giver restores their wounds.
+17~Saw Slash~1~none~40~'Failure' The Doctor slashes towards you.
+18~Defense Buff~0~defense~20~'Fortifying Defenses'\nThe Doctor becomes more impervious.
+19~Poisoned Bombs~0.55~special5-30~'Take This'. Bombs rain from the sky.
+20~Silent Prayer~0~special6~0~Plague Doctor chants a prayer that invigorates his spirit.
+21~Doctoral Study~0~special7~0~The Plague Doctor takes time  to study you. His bombs became more effective.
