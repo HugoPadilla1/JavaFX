@@ -3,8 +3,8 @@
     <CLASSES />
     <JAVADOC />
     <SOURCES>
-      <root url="file://$USER_HOME$/Documents/javafx-sdk-22.0.2" />
+      <root url="file://$USER_HOME$/javafx-sdk-22.0.2" />
     </SOURCES>
-    <jarDirectory url="file://$USER_HOME$/Documents/javafx-sdk-22.0.2" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$USER_HOME$/javafx-sdk-22.0.2" recursive="false" type="SOURCES" />
   </library>
 </component>

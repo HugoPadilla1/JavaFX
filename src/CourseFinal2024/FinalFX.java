@@ -71,6 +71,12 @@ public class FinalFX extends Application {
             return;
         }
 
+        // Check if the name contains symbols
+        if (!name.matches("[a-zA-Z ]+")) { // Allows only letters and spaces
+            showAlert("Error", "Name cannot contain symbols or numbers");
+            return;
+        }
+
         if (!major.equalsIgnoreCase("IT") && !major.equalsIgnoreCase("Information Technology")) {
             showAlert("Error", "Major must be either IT or Information Technology");
             return;

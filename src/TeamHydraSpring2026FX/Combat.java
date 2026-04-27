@@ -1,146 +1,245 @@
 package TeamHydraSpring2026FX;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-/*
-Combat class coders: Samuel Michel
-The purpose of this class is to handle the different attack chances.
-
-Create an ArrayList<Attack> that holds 10 Attack objects for each monster.
-If a monster's attack will have a 40% chance to roll, then add it to the list 4 times.
-Use integer.randomInt() to pick a number between -1 and 10 (not inclusive)
-Based on the roll, choose that attack to play against the other entity.
-
-
-1. Load player and monster
-2. Speed determines who goes first
-3. Basic attributes: health, damage, defense
-
-TODO:
--Insert the game lost command.
-
+/**
+ * Object-oriented combat engine.
+ *
+ * The JavaFX controller should not calculate damage, run monster turns, award drops,
+ * or decide victory/death. It should only call these methods and display the returned messages.
  */
 public class Combat {
-    public void initiateCombat(Player user, Monsters enemy, boolean inCombat) {
-        //check fastest enemy
-        Scanner combatSC = new Scanner(System.in);
-        String playerMove;
-        int causeDamage = 0;
-        Attack monsterMove;
+    private Player player;
+    private Monsters enemy;
+    private Room room;
+    private boolean active;
+    private boolean defending;
+    private boolean fled;
 
-        //The following assumes that the player speed is > the monster speed
-        while (inCombat) {
-            if (user.getHealth() <= 0) {
-                inCombat = false;
-                System.out.println("You have died. The plague spreads...");
-                //TODO: Game.lost command GOES HERE
-            } else if (enemy.getHealth() <= 0) {
-                inCombat = false;
+    public Combat() {
+        active = false;
+        defending = false;
+        fled = false;
+    }
+
+    public Combat(Player player, Monsters enemy, Room room) {
+        start(player, enemy, room);
+    }
+
+    public ArrayList<String> start(Player player, Monsters enemy, Room room) {
+        ArrayList<String> messages = new ArrayList<>();
+        this.player = player;
+        this.enemy = enemy;
+        this.room = room;
+        this.defending = false;
+        this.fled = false;
+        this.active = player != null && enemy != null && player.getHealth() > 0 && enemy.getHealth() > 0;
+
+        if (!active) {
+            messages.add("Combat could not start.");
+            return messages;
+        }
+
+        messages.add("========== COMBAT: " + enemy.getMonsterName() + " ==========");
+        messages.add(enemy.getMonsterDescription());
+        messages.add("Enemy HP: " + enemy.getHealth());
+        return messages;
+    }
+
+    public ArrayList<String> playerAttack() {
+        ArrayList<String> messages = new ArrayList<>();
+        if (!canAct(messages)) return messages;
+
+        int damage = Math.max(0, player.attack() - enemy.getDefense());
+        enemy.setHealth(Math.max(0, enemy.getHealth() - damage));
+        messages.add("You strike " + enemy.getMonsterName() + " for " + damage + " damage.");
+
+        if (enemy.getHealth() <= 0) {
+            messages.addAll(defeatEnemy());
+            return messages;
+        }
+
+        messages.addAll(monsterTurn());
+        return messages;
+    }
+
+    public ArrayList<String> playerDefend() {
+        ArrayList<String> messages = new ArrayList<>();
+        if (!canAct(messages)) return messages;
+
+        defending = true;
+        messages.add("You brace for impact. Incoming attack damage is reduced.");
+        messages.addAll(monsterTurn());
+        return messages;
+    }
+
+    public ArrayList<String> playerUseConsumable(Items item) {
+        ArrayList<String> messages = new ArrayList<>();
+        if (!canAct(messages)) return messages;
+
+        if (!(item instanceof Consumable)) {
+            messages.add("That item cannot be used in combat.");
+            return messages;
+        }
+
+        player.useItem(item, player.getInventory());
+        messages.add("You used " + item.getItemName() + ".");
+        messages.addAll(monsterTurn());
+        return messages;
+    }
+
+    public ArrayList<String> tryFlee() {
+        ArrayList<String> messages = new ArrayList<>();
+        if (!canAct(messages)) return messages;
+
+        int chance = 50 + player.getSpeed() - enemy.getSpeed();
+        chance = Math.max(10, Math.min(90, chance));
+        int roll = (int) (Math.random() * 100);
+
+        if (roll < chance) {
+            active = false;
+            fled = true;
+            defending = false;
+            messages.add("You escaped combat, but the monster still blocks the room exit.");
+        } else {
+            messages.add("You failed to escape.");
+            messages.addAll(monsterTurn());
+        }
+        return messages;
+    }
+
+    public ArrayList<String> monsterTurn() {
+        ArrayList<String> messages = new ArrayList<>();
+        if (!active || enemy == null || player == null || enemy.getHealth() <= 0) return messages;
+
+        Attack attack = enemy.spinMonsterAttack();
+        String flavor = attack.getFlavorText();
+        if (flavor != null && !flavor.isEmpty()) {
+            messages.add(flavor);
+        } else {
+            messages.add(enemy.getMonsterName() + " uses " + attack.getAttackName() + ".");
+        }
+
+        String effect = attack.getStatusEffect() == null ? "none" : attack.getStatusEffect().trim().toLowerCase();
+        if (effect.equals("heal")) {
+            int healed = attack.heal(enemy);
+            messages.add(enemy.getMonsterName() + " heals " + healed + " HP.");
+        } else if (effect.equals("defense")) {
+            int boosted = attack.addDefense(enemy);
+            messages.add(enemy.getMonsterName() + " raises defense by " + boosted + ".");
+        } else {
+            int damage = attack.calculateDamage(enemy, player);
+            if (defending) damage /= 2;
+            player.setHealth(Math.max(0, player.getHealth() - damage));
+            messages.add(enemy.getMonsterName() + " deals " + damage + " damage.");
+            applyStatusEffectIfRolled(attack, player, messages);
+        }
+
+        defending = false;
+        if (player.getHealth() <= 0) {
+            active = false;
+            messages.add("You have died. The plague spreads...");
+        }
+        return messages;
+    }
+
+    private void applyStatusEffectIfRolled(Attack attack, Entity target, ArrayList<String> messages) {
+        String effect = attack.getStatusEffect() == null ? "none" : attack.getStatusEffect().trim().toLowerCase();
+        if (effect.equals("none") || effect.equals("heal") || effect.equals("defense")) return;
+
+        double chance = attack.getStatusChance();
+        if (chance <= 0) return;
+        double roll = Math.random();
+        if (roll > chance) return;
+
+        if (effect.contains("poison")) {
+            attack.poison(target);
+            messages.add("Status effect applied: poison.");
+        } else if (effect.contains("paraly")) {
+            attack.paralyze(target);
+            messages.add("Status effect applied: paralysis.");
+        } else {
+            messages.add("Status effect applied: " + attack.getStatusEffect() + ".");
+        }
+    }
+
+    private ArrayList<String> defeatEnemy() {
+        ArrayList<String> messages = new ArrayList<>();
+        active = false;
+        defending = false;
+        messages.add("Defeated: " + enemy.getMonsterName());
+
+        if (room != null) {
+            removeEnemyFromRoom();
+            messages.addAll(dropEnemyItemsToRoom());
+        }
+        return messages;
+    }
+
+    private void removeEnemyFromRoom() {
+        if (room == null || enemy == null) return;
+        String removeKey = null;
+        for (String key : room.getMonsters().keySet()) {
+            if (room.getMonsters().get(key) == enemy) {
+                removeKey = key;
                 break;
-            } else { //combat
-                boolean isDefending = false;
-                boolean playerDefendedLastTurn = false;
-                boolean validCombatCommand = false;
+            }
+        }
+        if (removeKey != null) room.getMonsters().remove(removeKey);
+    }
 
-                //this loop allows the player to cancel using an item, or if they make a typo they can type the
-                //corrected command.
-                while (!validCombatCommand) {
-                    System.out.println("What's your next move? Type attack, item, or retreat");
-                    playerMove = combatSC.next();
+    private ArrayList<String> dropEnemyItemsToRoom() {
+        ArrayList<String> messages = new ArrayList<>();
+        if (enemy.getMonsterInventory() == null || enemy.getMonsterInventory().isEmpty()) {
+            messages.add("No item drops.");
+            return messages;
+        }
 
-                    //Player chooses attack
-                    if (playerMove.equalsIgnoreCase("attack")) {
-                    /* DAMAGE FORMULA
-                    Damage = (Damage Multiplier) * Initiator Attack Stat + Equipped Weapon Attack Stat – Defender’s Defense Stat
-                    */
-                        causeDamage = user.attack() - enemy.getDefense();
-                        if (causeDamage < 0) {      //if the player's damage is greater than the enemy's defense, subtract from enemy health
-                            enemy.setHealth(enemy.getHealth() - causeDamage);
-                        } else {
-                            System.out.println("The enemy's defense is too high! 0 damage caused.");
-                        }
-                        validCombatCommand = true;
-                    }//end Player chooses attack
+        messages.add("Drops added to the room:");
+        for (Items item : enemy.getMonsterInventory()) {
+            String code = item.getItemName().toUpperCase().replaceAll("\\s+", "_");
+            room.getItems().put(code, item);
+            item.setLocation(room);
+            messages.add("+ " + item.getItemName());
+        }
+        enemy.getMonsterInventory().clear();
+        return messages;
+    }
 
-                    //Method for when the player chooses to defend. This results in the monster's damage to the player to be
-                    //reduced by 50%
-                    if (playerMove.equalsIgnoreCase("defend")) {
-                        if (playerDefendedLastTurn) {
-                            System.out.println("You can't defend two turns in a row!");
-                        } else {
-                            isDefending = true;
-                            playerDefendedLastTurn = true;
-                            System.out.println("You brace yourself for the next attack!");
-                            validCombatCommand = true;
-                        }
-                    } else {
-                        playerDefendedLastTurn = false; //resets the variable
-                    }//end defend usage
+    private boolean canAct(ArrayList<String> messages) {
+        if (!active || player == null || enemy == null) {
+            messages.add("No active combat.");
+            return false;
+        }
+        if (player.getHealth() <= 0) {
+            active = false;
+            messages.add("You are unable to fight.");
+            return false;
+        }
+        if (enemy.getHealth() <= 0) {
+            messages.addAll(defeatEnemy());
+            return false;
+        }
+        return true;
+    }
 
-                    //If the player chooses to flee:
-                    if (playerMove.equalsIgnoreCase("flee")) {
-                        int fleeChance = (int) (Math.random() * 100) + user.getSpeed() - enemy.getSpeed();
-                        if (fleeChance < 50) { // 50% chance to flee, adjust as needed
-                            System.out.println("You successfully fled the battle!");
-                            inCombat = false;
-                            break;
-                        } else {
-                            System.out.println("You failed to escape!");
-                            validCombatCommand = true;
-                            // Monster still attacks
-                        }
-                    }//end flee usage
+    public boolean isActive() {
+        return active;
+    }
 
-                    //If the player chooses to use an item:
-                    if (playerMove.equalsIgnoreCase("item")) {
-                        boolean usingItem = true;
-                        while (usingItem) {
-                            System.out.println("Which consumable would you like to use?");
-                            String itemName = combatSC.next();
-                            Items itemToUse = null;
-                            if (itemName.equalsIgnoreCase("cancel")) {
-                                usingItem = false;
-                                break;
-                            }
-                            for (Items item : user.getInventory()) {
-                                if (item.getItemName().equalsIgnoreCase(itemName) && item instanceof Consumable) {
-                                    itemToUse = item;
-                                    break;
-                                }
-                            }
-                            if (itemToUse != null) {
-                                user.useItem(itemToUse, user.getInventory());
-                                System.out.println("You used " + itemName + "!");
-                                validCombatCommand = true;
-                            } else {
-                                System.out.println("You don't have that consumable item!\nTry typing a different item, or type 'cancel'.");
-                            }
-                        }
-                    }//end item usage
+    public boolean hasFled() {
+        return fled;
+    }
 
-                    else System.out.println("Invalid input received, or you've canceled action.");
-                }//end validCombatCommand loop; continue to the monster's attack if validCombatCommand is true.
+    public Player getPlayer() {
+        return player;
+    }
 
-                //Monster attack
-                monsterMove = enemy.spinMonsterAttack();
-                causeDamage = (int) (monsterMove.getDamageMultiplier() * enemy.getDamage()) - user.getDefense();
-                //If the player defends, reduce the monster's damage to the user by 50%
-                if (isDefending) {
-                    causeDamage = causeDamage / 2;
-                    user.setHealth(user.getHealth() - causeDamage);
-                    isDefending = false; // Reset after use
-                    System.out.println("You position yourself defensively...");
-                } else {
-                    if (causeDamage < 0) {      //if the monster's damage is greater than the user's defense, subtract from user health
-                        user.setHealth(user.getHealth() - causeDamage);
-                        System.out.println("The monster has struck! You have taken " + causeDamage + " damage! You health is now at " + user.getHealth() + "\nMonster health: " + enemy.getHealth());
-                    } else {
-                        System.out.println("The adventurer's defense is too high! 0 damage caused.");
-                    }
-                }
-            }//end combat code block
-        }//end combat loop
-        combatSC.close();
+    public Monsters getEnemy() {
+        return enemy;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 }

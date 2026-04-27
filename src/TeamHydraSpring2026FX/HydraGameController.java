@@ -21,9 +21,8 @@ public class HydraGameController {
     private GameMap gameMap;
     private Player player;
     private Room currentRoom;
-    private Monsters activeMonster;
+    private Combat activeCombat;
     private Puzzle activePuzzle;
-    private boolean defending;
 
     private TextArea outputArea;
     private Label roomTitleLabel;
@@ -89,9 +88,8 @@ public class HydraGameController {
 
             currentRoom.setVisited(true);
             player.setLocation(currentRoom);
-            activeMonster = null;
+            activeCombat = null;
             activePuzzle = null;
-            defending = false;
 
             clearOutput();
             append("========== TEAM HYDRA ==========");
@@ -371,9 +369,8 @@ public class HydraGameController {
         currentRoom = nextRoom;
         currentRoom.setVisited(true);
         player.setLocation(currentRoom);
-        activeMonster = null;
+        activeCombat = null;
         activePuzzle = null;
-        defending = false;
         appendRoomEntry();
         refreshAll();
 
@@ -448,8 +445,13 @@ public class HydraGameController {
         }
 
         if (item instanceof Consumable) {
-            player.useItem(item, player.getInventory());
-            append("Used " + item.getItemName() + ".");
+            if (activeCombat != null && activeCombat.isActive()) {
+                appendAll(activeCombat.playerUseConsumable(item));
+                handlePostCombatState();
+            } else {
+                player.useItem(item, player.getInventory());
+                append("Used " + item.getItemName() + ".");
+            }
         } else if (item instanceof KeyItem) {
             KeyItem key = (KeyItem) item;
             key.itemEquipEffect(player);
@@ -488,109 +490,40 @@ public class HydraGameController {
             append("No monster in this room.");
             return;
         }
-        activeMonster = currentRoom.getMonsters().get(code);
-        defending = false;
-        append("\n========== COMBAT: " + activeMonster.getMonsterName() + " ==========");
+
+        Monsters enemy = currentRoom.getMonsters().get(code);
+        activeCombat = world.createCombat();
+        appendAll(activeCombat.start(player, enemy, currentRoom));
         append("Use Attack, Defend, Flee, or a consumable from Inventory > Use.");
         refreshAll();
     }
 
     private void playerAttack() {
-        if (!ensureActiveMonster()) return;
-        int damage = Math.max(0, player.attack() - activeMonster.getDefense());
-        activeMonster.setHealth(Math.max(0, activeMonster.getHealth() - damage));
-        append("You strike " + activeMonster.getMonsterName() + " for " + damage + " damage.");
-        afterPlayerCombatAction();
+        if (!ensureActiveCombat()) return;
+        appendAll(activeCombat.playerAttack());
+        handlePostCombatState();
     }
 
     private void playerDefend() {
-        if (!ensureActiveMonster()) return;
-        defending = true;
-        append("You brace for impact. Incoming attack damage is reduced.");
-        afterPlayerCombatAction();
+        if (!ensureActiveCombat()) return;
+        appendAll(activeCombat.playerDefend());
+        handlePostCombatState();
     }
 
     private void fleeCombat() {
-        if (!ensureActiveMonster()) return;
-        int chance = 50 + player.getSpeed() - activeMonster.getSpeed();
-        if ((int) (Math.random() * 100) < chance) {
-            append("You escaped combat, but the monster still blocks the room exit.");
-            activeMonster = null;
-            defending = false;
-        } else {
-            append("You failed to escape.");
-            monsterTurn();
-        }
-        refreshAll();
+        if (!ensureActiveCombat()) return;
+        appendAll(activeCombat.tryFlee());
+        handlePostCombatState();
     }
 
-    private void afterPlayerCombatAction() {
-        if (activeMonster.getHealth() <= 0) {
-            append("Defeated: " + activeMonster.getMonsterName());
-            giveMonsterDrops(activeMonster);
-            removeMonsterFromCurrentRoom(activeMonster);
-            activeMonster = null;
-            defending = false;
-            refreshAll();
-            return;
-        }
-        monsterTurn();
-        defending = false;
+    private void handlePostCombatState() {
         if (player.getHealth() <= 0) {
-            append("\nYou have died. The plague spreads...");
             disableGameControls();
         }
+        if (activeCombat != null && !activeCombat.isActive()) {
+            activeCombat = null;
+        }
         refreshAll();
-    }
-
-    private void monsterTurn() {
-        if (activeMonster == null) return;
-        Attack attack = activeMonster.spinMonsterAttack();
-        if (attack.getFlavorText() != null && !attack.getFlavorText().isEmpty()) {
-            append(attack.getFlavorText());
-        } else {
-            append(activeMonster.getMonsterName() + " uses " + attack.getAttackName() + ".");
-        }
-
-        if (attack.getStatusEffect().equalsIgnoreCase("heal")) {
-            int healed = attack.heal(activeMonster);
-            append(activeMonster.getMonsterName() + " heals " + healed + " HP.");
-            return;
-        }
-        if (attack.getStatusEffect().equalsIgnoreCase("defense")) {
-            int boosted = attack.addDefense(activeMonster);
-            append(activeMonster.getMonsterName() + " raises defense by " + boosted + ".");
-            return;
-        }
-
-        int damage = attack.calculateDamage(activeMonster, player);
-        if (defending) damage /= 2;
-        player.setHealth(Math.max(0, player.getHealth() - damage));
-        append(activeMonster.getMonsterName() + " deals " + damage + " damage.");
-    }
-
-    private void giveMonsterDrops(Monsters enemy) {
-        if (enemy.getMonsterInventory() == null || enemy.getMonsterInventory().isEmpty()) {
-            append("No item drops.");
-            return;
-        }
-        append("Drops added to the room:");
-        for (Items item : enemy.getMonsterInventory()) {
-            String code = safeItemCode(item);
-            currentRoom.getItems().put(code, item);
-            append("+ " + code + " - " + item.getItemName());
-        }
-    }
-
-    private void removeMonsterFromCurrentRoom(Monsters enemy) {
-        String removeKey = null;
-        for (Map.Entry<String, Monsters> entry : currentRoom.getMonsters().entrySet()) {
-            if (entry.getValue() == enemy) {
-                removeKey = entry.getKey();
-                break;
-            }
-        }
-        if (removeKey != null) currentRoom.getMonsters().remove(removeKey);
     }
 
     private void openSelectedPuzzle() {
@@ -617,25 +550,9 @@ public class HydraGameController {
             append("Open a puzzle first.");
             return;
         }
-        if (activePuzzle.isSolved()) {
-            append("This puzzle is already solved.");
-            return;
-        }
         String answer = puzzleAnswerField.getText();
-        boolean solved = activePuzzle.solvePuzzle(answer);
         puzzleAnswerField.clear();
-
-        if (solved) {
-            append(activePuzzle.getWinMessage());
-            append(activePuzzle.getSuccessResult());
-            grantPuzzleRewards(activePuzzle);
-        } else {
-            append(activePuzzle.getFailMessage());
-            append("Attempts remaining: " + activePuzzle.getRemainingAttempts());
-            if (activePuzzle.getRemainingAttempts() <= 0) {
-                applyPuzzlePenalty(activePuzzle);
-            }
-        }
+        appendAll(activePuzzle.submitAnswer(answer, player, currentRoom));
         refreshAll();
     }
 
@@ -645,36 +562,6 @@ public class HydraGameController {
             return;
         }
         append("Hint: " + activePuzzle.getHintMessage());
-    }
-
-    private void grantPuzzleRewards(Puzzle puzzle) {
-        if (puzzle.getRewardItems() == null || puzzle.getRewardItems().isEmpty()) {
-            append("No item reward.");
-            return;
-        }
-        append("Puzzle rewards added to room:");
-        for (Items item : new ArrayList<>(puzzle.getRewardItems())) {
-            String code = safeItemCode(item);
-            currentRoom.getItems().put(code, item);
-            append("+ " + code + " - " + item.getItemName());
-        }
-        puzzle.getRewardItems().clear();
-    }
-
-    private void applyPuzzlePenalty(Puzzle puzzle) {
-        String penalty = puzzle.getPenalty();
-        if (penalty == null || penalty.trim().isEmpty() || penalty.equalsIgnoreCase("none")) {
-            append("No penalty was applied.");
-            return;
-        }
-        String lower = penalty.toLowerCase();
-        if (lower.contains("health") || lower.contains("hp") || lower.contains("damage")) {
-            int amount = Math.max(5, parseNumericID(penalty));
-            player.setHealth(Math.max(0, player.getHealth() - amount));
-            append("Penalty applied: -" + amount + " HP.");
-        } else {
-            append("Penalty: " + penalty);
-        }
     }
 
     private void rest() {
@@ -885,8 +772,8 @@ public class HydraGameController {
         if (!any) append("None.");
     }
 
-    private boolean ensureActiveMonster() {
-        if (activeMonster == null) {
+    private boolean ensureActiveCombat() {
+        if (activeCombat == null || !activeCombat.isActive()) {
             append("Select a monster and press Fight first.");
             return false;
         }
@@ -968,8 +855,8 @@ public class HydraGameController {
         monstersList.setItems(FXCollections.observableArrayList(monsterRows()));
         puzzlesList.setItems(FXCollections.observableArrayList(puzzleRows()));
 
-        combatLabel.setText(activeMonster == null ? "Combat: none" : "Combat: " + activeMonster.getMonsterName() + " HP " + activeMonster.getHealth());
-        boolean inCombat = activeMonster != null && activeMonster.getHealth() > 0 && player.getHealth() > 0;
+        combatLabel.setText(activeCombat == null || activeCombat.getEnemy() == null ? "Combat: none" : "Combat: " + activeCombat.getEnemy().getMonsterName() + " HP " + activeCombat.getEnemy().getHealth());
+        boolean inCombat = activeCombat != null && activeCombat.isActive() && player.getHealth() > 0;
         attackButton.setDisable(!inCombat);
         defendButton.setDisable(!inCombat);
         fleeButton.setDisable(!inCombat);
@@ -1023,6 +910,13 @@ public class HydraGameController {
         defendButton.setDisable(true);
         fleeButton.setDisable(true);
         submitPuzzleButton.setDisable(true);
+    }
+
+    private void appendAll(java.util.List<String> messages) {
+        if (messages == null) return;
+        for (String message : messages) {
+            append(message);
+        }
     }
 
     private void clearOutput() {

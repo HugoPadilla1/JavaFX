@@ -172,6 +172,102 @@ public class Puzzle {
         return false;
     }
 
+    /**
+     * JavaFX/controller-friendly reward handling.
+     * Moves this responsibility out of HydraGameController and into Puzzle.
+     */
+    public java.util.ArrayList<String> grantRewardsToRoom(Room room) {
+        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        if (!solved) {
+            messages.add("Puzzle is not solved yet.");
+            return messages;
+        }
+        if (rewardItems == null || rewardItems.isEmpty()) {
+            messages.add("No item reward.");
+            return messages;
+        }
+        if (room == null) {
+            messages.add("Reward could not be placed because no room was provided.");
+            return messages;
+        }
+
+        messages.add("Puzzle rewards added to room:");
+        for (Items item : new java.util.ArrayList<>(rewardItems)) {
+            String code = item.getItemName().toUpperCase().replaceAll("\\s+", "_");
+            room.getItems().put(code, item);
+            item.setLocation(room);
+            messages.add("+ " + item.getItemName());
+        }
+        rewardItems.clear();
+        return messages;
+    }
+
+    /**
+     * Applies the puzzle penalty to the player when attempts run out.
+     */
+    public java.util.ArrayList<String> applyPenaltyToPlayer(Player player) {
+        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        if (solved || remainingAttempts > 0) {
+            return messages;
+        }
+        if (penalty == null || penalty.trim().isEmpty() || penalty.equalsIgnoreCase("none")) {
+            messages.add("No penalty was applied.");
+            return messages;
+        }
+
+        String lower = penalty.toLowerCase();
+        if (player != null && (lower.contains("health") || lower.contains("hp") || lower.contains("damage"))) {
+            int amount = parseNumberFromText(penalty);
+            if (amount <= 0) amount = 5;
+            player.setHealth(Math.max(0, player.getHealth() - amount));
+            messages.add("Penalty applied: -" + amount + " HP.");
+        } else {
+            messages.add("Penalty: " + penalty);
+        }
+        return messages;
+    }
+
+    /**
+     * Solves a puzzle and returns displayable messages for the UI/console.
+     */
+    public java.util.ArrayList<String> submitAnswer(String playerAnswer, Player player, Room room) {
+        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        if (solved) {
+            messages.add("This puzzle is already solved.");
+            return messages;
+        }
+        if (remainingAttempts <= 0) {
+            messages.add(failMessage);
+            messages.addAll(applyPenaltyToPlayer(player));
+            return messages;
+        }
+
+        boolean wasSolved = solvePuzzle(playerAnswer);
+        if (wasSolved) {
+            messages.add(winMessage);
+            messages.add(successResult);
+            messages.addAll(grantRewardsToRoom(room));
+        } else {
+            messages.add(failMessage);
+            messages.add("Attempts remaining: " + remainingAttempts);
+            if (remainingAttempts <= 0) {
+                messages.addAll(applyPenaltyToPlayer(player));
+            }
+        }
+        return messages;
+    }
+
+    private int parseNumberFromText(String text) {
+        if (text == null) return 0;
+        String digits = text.replaceAll("[^0-9]", "");
+        if (digits.isEmpty()) return 0;
+        try {
+            return Integer.parseInt(digits);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     public int getRemainingAttempts() {
         return remainingAttempts;
     }

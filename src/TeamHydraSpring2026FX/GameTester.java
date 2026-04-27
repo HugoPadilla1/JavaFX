@@ -327,104 +327,36 @@ public class GameTester {
             return;
         }
 
-        System.out.println("\n========== COMBAT: " + enemy.getMonsterName() + " ==========");
-        boolean defending = false;
-        while (player.getHealth() > 0 && enemy.getHealth() > 0) {
+        Combat combat = world.createCombat();
+        printMessages(combat.start(player, enemy, currentRoom));
+
+        while (combat.isActive()) {
             System.out.println("\nYour HP: " + player.getHealth() + " | Enemy HP: " + enemy.getHealth());
             System.out.print("Combat [ATTACK / DEFEND / ITEM itemID / FLEE] > ");
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
+
             String[] parts = input.split("\\s+", 2);
             String command = parts[0].toUpperCase();
             String argument = parts.length > 1 ? parts[1].trim() : "";
 
             if (command.equals("ATTACK") || command.equals("A")) {
-                int damage = Math.max(0, player.attack() - enemy.getDefense());
-                enemy.setHealth(Math.max(0, enemy.getHealth() - damage));
-                System.out.println("You strike for " + damage + " damage.");
+                printMessages(combat.playerAttack());
             } else if (command.equals("DEFEND") || command.equals("D")) {
-                defending = true;
-                System.out.println("You brace for impact.");
+                printMessages(combat.playerDefend());
             } else if (command.equals("ITEM") || command.equals("USE")) {
                 Items item = findInventoryItem(argument);
                 if (item instanceof Consumable) {
-                    player.useItem(item, player.getInventory());
+                    printMessages(combat.playerUseConsumable(item));
                 } else {
                     System.out.println("Choose a consumable item.");
-                    continue;
                 }
             } else if (command.equals("FLEE") || command.equals("RETREAT")) {
-                int chance = 50 + player.getSpeed() - enemy.getSpeed();
-                if ((int) (Math.random() * 100) < chance) {
-                    System.out.println("You escaped combat.");
-                    return;
-                }
-                System.out.println("You failed to escape.");
+                printMessages(combat.tryFlee());
             } else {
                 System.out.println("Invalid combat command.");
-                continue;
-            }
-
-            if (enemy.getHealth() <= 0) break;
-            monsterTurn(enemy, defending);
-            defending = false;
-        }
-
-        if (enemy.getHealth() <= 0) {
-            System.out.println("\nDefeated: " + enemy.getMonsterName());
-            giveMonsterDrops(enemy);
-            removeMonsterFromCurrentRoom(enemy);
-        }
-    }
-
-    private void monsterTurn(Monsters enemy, boolean defending) {
-        Attack attack = enemy.spinMonsterAttack();
-        if (attack.getFlavorText() != null && !attack.getFlavorText().isEmpty()) {
-            System.out.println(attack.getFlavorText());
-        } else {
-            System.out.println(enemy.getMonsterName() + " uses " + attack.getAttackName() + ".");
-        }
-
-        if (attack.getStatusEffect().equalsIgnoreCase("heal")) {
-            int healed = attack.heal(enemy);
-            System.out.println(enemy.getMonsterName() + " heals " + healed + " HP.");
-            return;
-        }
-        if (attack.getStatusEffect().equalsIgnoreCase("defense")) {
-            int boosted = attack.addDefense(enemy);
-            System.out.println(enemy.getMonsterName() + " raises defense by " + boosted + ".");
-            return;
-        }
-
-        int damage = attack.calculateDamage(enemy, player);
-        if (defending) damage = damage / 2;
-        player.setHealth(Math.max(0, player.getHealth() - damage));
-        System.out.println(enemy.getMonsterName() + " deals " + damage + " damage.");
-    }
-
-    private void giveMonsterDrops(Monsters enemy) {
-        if (enemy.getMonsterInventory() == null || enemy.getMonsterInventory().isEmpty()) {
-            System.out.println("No item drops.");
-            return;
-        }
-        System.out.println("Drops:");
-        for (Items item : enemy.getMonsterInventory()) {
-            String code = world.getItemCode(item);
-            if (code == null) code = item.getItemName().toUpperCase();
-            currentRoom.getItems().put(code, item);
-            System.out.println("+ " + code + " -> " + item.getItemName());
-        }
-    }
-
-    private void removeMonsterFromCurrentRoom(Monsters enemy) {
-        String targetKey = null;
-        for (Map.Entry<String, Monsters> entry : currentRoom.getMonsters().entrySet()) {
-            if (entry.getValue() == enemy) {
-                targetKey = entry.getKey();
-                break;
             }
         }
-        if (targetKey != null) currentRoom.getMonsters().remove(targetKey);
     }
 
     private void puzzle(String puzzleCode) {
@@ -437,17 +369,31 @@ public class GameTester {
 
         puzzle.setCurrentRoom(currentRoom);
         puzzle.setPlayer(player);
-        puzzle.enterPuzzleMode();
+        puzzle.accessPuzzle();
 
-        if (puzzle.isSolved() && puzzle.getRewardItems() != null && !puzzle.getRewardItems().isEmpty()) {
-            System.out.println("Rewards added to this room:");
-            for (Items item : puzzle.getRewardItems()) {
-                String code = world.getItemCode(item);
-                if (code == null) code = item.getItemName().toUpperCase();
-                currentRoom.getItems().put(code, item);
-                System.out.println("+ " + code + " -> " + item.getItemName());
+        while (!puzzle.isSolved() && puzzle.getRemainingAttempts() > 0) {
+            System.out.print("Puzzle [ANSWER text / HINT / EXIT] > ");
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("EXIT")) {
+                puzzle.exitPuzzle();
+                return;
             }
-            puzzle.getRewardItems().clear();
+            if (input.equalsIgnoreCase("HINT")) {
+                System.out.println("Hint: " + puzzle.giveHint());
+                continue;
+            }
+            String answer = input;
+            if (input.toUpperCase().startsWith("ANSWER ")) {
+                answer = input.substring(7).trim();
+            }
+            printMessages(puzzle.submitAnswer(answer, player, currentRoom));
+        }
+    }
+
+    private void printMessages(java.util.List<String> messages) {
+        if (messages == null) return;
+        for (String message : messages) {
+            System.out.println(message);
         }
     }
 

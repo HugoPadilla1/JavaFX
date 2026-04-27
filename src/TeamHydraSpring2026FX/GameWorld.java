@@ -439,6 +439,10 @@ public class GameWorld {
         return digits.isEmpty() ? 0 : Integer.parseInt(digits);
     }
 
+    public Combat createCombat() {
+        return new Combat();
+    }
+
     public GameMap getGameMap() {
         return gameMap;
     }
