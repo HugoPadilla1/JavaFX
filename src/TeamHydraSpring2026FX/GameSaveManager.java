@@ -20,6 +20,7 @@ public class GameSaveManager {
             writer.println("PLAYER~" + player.getHealth() + "~" + player.getDamage() + "~" +
                     player.getDefense() + "~" + player.getSpeed() + "~" + player.getInventorySpace() + "~" + safe(player.getWeapon()));
             writer.println("INVENTORY~" + joinInventory(world, player));
+            writer.println("EQUIPPED_WEAPON~" + equippedWeaponCode(world, player));
             writer.println("SOLVED_PUZZLES~" + joinSolvedPuzzles(world));
             writer.println("ROOM_ITEMS~" + joinRoomItems(world));
             writer.println("ROOM_MONSTERS~" + joinRoomMonsters(world));
@@ -53,6 +54,7 @@ public class GameSaveManager {
         restoreRoomMonsters(world, data.get("ROOM_MONSTERS"));
         restoreSolvedPuzzles(world, data.get("SOLVED_PUZZLES"));
         restoreInventory(world, player, data.get("INVENTORY"));
+        restoreEquippedWeapon(world, player, data.get("EQUIPPED_WEAPON"));
 
         String roomID = data.getOrDefault("ROOM", "R02").trim().toUpperCase();
         Room room = world.getRoom(roomID);
@@ -62,6 +64,12 @@ public class GameSaveManager {
         room.setVisited(true);
         player.setLocation(room);
         return room;
+    }
+
+    private static String equippedWeaponCode(GameWorld world, Player player) {
+        if (player.getEquippedWeapon() == null) return "";
+        String code = world.getItemCode(player.getEquippedWeapon());
+        return code == null ? "" : code;
     }
 
     private static String joinInventory(GameWorld world, Player player) {
@@ -134,6 +142,14 @@ public class GameSaveManager {
             if (item != null && player.getInventory().size() < player.getInventorySpace()) {
                 player.getInventory().add(item);
             }
+        }
+    }
+
+    private static void restoreEquippedWeapon(GameWorld world, Player player, String weaponCode) {
+        if (weaponCode == null || weaponCode.trim().isEmpty()) return;
+        Items item = world.getCatalogItem(weaponCode.trim().toUpperCase());
+        if (item instanceof Weapon) {
+            player.setEquippedWeaponDirect((Weapon) item);
         }
     }
 

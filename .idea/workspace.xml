@@ -4,33 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78ea2413-7380-4f83-a5d7-e4db4291f65d" name="Changes" comment="animal adventure game update">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
+    <list default="true" id="78ea2413-7380-4f83-a5d7-e4db4291f65d" name="Changes" comment="hello">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaFX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Combat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Combat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Consumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Consumable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Data/basedata/MonsterAttackData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Data/basedata/MonsterAttackData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Data/basedata/Monsters.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Data/basedata/Monsters.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameSaveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameSaveManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/GameWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/HydraGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/HydraGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/KeyItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/KeyItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Rooms.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Rooms.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/TeamHydra-Spring2026.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/TeamHydra-Spring2026.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Weapon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Wearable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Wearable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/itemData" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/itemData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/itemLocationData" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/itemLocationData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzleLocationData" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzleLocationData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzleRewardItems" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzleRewardItems" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzles.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzles_outcomes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/puzzles_outcomes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/hydra_save_slot_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamHydraSpring2026FX/hydra_save_slot_1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +29,50 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HugoPadilla1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HugoPadilla1/JavaFX&quot;,
+    &quot;accountId&quot;: &quot;9a59b022-92e7-4510-83a0-dd6f520a8f28&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="2ledCtUq6MptrxiuIAELYgNBnLC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.GameTester.executor": "Run",
+    "Application.HydraGameApp.executor": "Run",
+    "Application.JavaFXDemo.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/padil/Documents/javafx-sdk-22.0.2/lib",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/padil/Downloads/letterboxd-cli-java",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -87,7 +92,7 @@
   </component>
   <component name="RunManager" selected="Application.HydraGameApp">
     <configuration name="GameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-26" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="TeamHydraSpring2026FX.GameTester" />
       <module name="JavaFX" />
@@ -103,11 +108,11 @@
       </method>
     </configuration>
     <configuration name="HydraGameApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="22" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-26" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="TeamHydraSpring2026FX.HydraGameApp" />
       <module name="JavaFX" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media --enable-native-access=javafx.graphics" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/TeamHydraSpring2026FX" />
       <extension name="coverage">
         <pattern>
@@ -119,15 +124,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+    <configuration name="JavaFXDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-26" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="FinalExtraCredit.Main" />
+      <option name="MAIN_CLASS_NAME" value="Midterm.JavaFXDemo" />
       <module name="JavaFX" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Documents/javafx-sdk-22.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="FinalExtraCredit.*" />
+          <option name="PATTERN" value="Midterm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,15 +185,15 @@
     <list>
       <item itemvalue="Application.GameTester" />
       <item itemvalue="Application.HydraGameApp" />
+      <item itemvalue="Application.JavaFXDemo" />
       <item itemvalue="Application.TextBasedGameUpdated.AnimalAdventureGame" />
       <item itemvalue="Application.textgame_update.AnimalAdventureGame" />
-      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.HydraGameApp" />
         <item itemvalue="Application.GameTester" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.JavaFXDemo" />
         <item itemvalue="Application.textgame_update.AnimalAdventureGame" />
         <item itemvalue="Application.TextBasedGameUpdated.AnimalAdventureGame" />
       </list>
@@ -209,10 +214,9 @@
       <workItem from="1771014973729" duration="1052000" />
       <workItem from="1771016583019" duration="140000" />
       <workItem from="1771016730471" duration="798000" />
-      <workItem from="1774637774923" duration="2660000" />
-      <workItem from="1776826041982" duration="626000" />
-      <workItem from="1777232082475" duration="134000" />
-      <workItem from="1777232271844" duration="2597000" />
+      <workItem from="1774637774923" duration="2353000" />
+      <workItem from="1777316193770" duration="2411000" />
+      <workItem from="1777487695838" duration="705000" />
     </task>
     <task id="LOCAL-00001" summary="finished hw">
       <created>1725588710662</created>
@@ -284,14 +288,7 @@
       <option name="project" value="LOCAL" />
       <updated>1733276288668</updated>
     </task>
-    <task id="LOCAL-00011" summary="animal adventure game update">
-      <created>1774640285182</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1774640285182</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,8 +309,7 @@
     <MESSAGE value="finished hw" />
     <MESSAGE value="most update" />
     <MESSAGE value="nice" />
-    <MESSAGE value="animal adventure game update" />
-    <option name="LAST_COMMIT_MESSAGE" value="animal adventure game update" />
+    <option name="LAST_COMMIT_MESSAGE" value="nice" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

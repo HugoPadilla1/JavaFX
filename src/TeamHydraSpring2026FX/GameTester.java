@@ -106,6 +106,10 @@ public class GameTester {
                 case "EQUIP":
                     equipItem(argument);
                     break;
+                case "EXAMINE":
+                case "INSPECT":
+                    examineItem(argument);
+                    break;
                 case "FIGHT":
                 case "ATTACK":
                     fight(argument);
@@ -341,10 +345,20 @@ public class GameTester {
         }
 
         if (item instanceof Weapon || item instanceof Wearable) {
-            player.equipItem(item, player.getInventory());
+            System.out.println(player.equipItem(item, player.getInventory()));
         } else {
             System.out.println("That item cannot be equipped.");
         }
+    }
+
+    private void examineItem(String itemCode) {
+        Items item = findInventoryItem(itemCode);
+        if (item == null) {
+            System.out.println("You do not have that item.");
+            return;
+        }
+        System.out.println("\n-- Examine Item --");
+        System.out.println(player.examineItem(item));
     }
 
     private void fight(String monsterCode) {
@@ -529,7 +543,8 @@ public class GameTester {
         System.out.println("\n========== TUTORIAL ==========");
         System.out.println("Objective: Escape the infected hospital by exploring rooms, collecting supplies, solving puzzles, and surviving combat.");
         System.out.println("Movement: Use N/E/S/W for normal movement. In lobby/stair rooms, U/D move between floors.");
-        System.out.println("Items: GRAB itemID, USE itemID for consumables/key items, and EQUIP itemID for weapons/wearables.");
+        System.out.println("Items: GRAB itemID, USE itemID, EQUIP itemID, DROP itemID, and EXAMINE itemID.");
+        System.out.println("Weapons use a unique weapon slot: equipping removes the weapon from visible inventory and prevents stat stacking.");
         System.out.println("Puzzles: PUZZLE puzzleID opens puzzle mode; solved puzzles can add rewards.");
         System.out.println("Combat: FIGHT monsterID starts combat; ATTACK/DEFEND/FLEE handle combat turns.");
         System.out.println("Saving: SAVE 1, SAVE 2, LOAD 1, or LOAD 2.");
@@ -548,6 +563,7 @@ public class GameTester {
         System.out.println("INVENTORY or INV         - Show held items");
         System.out.println("USE itemID               - Use consumable/key item");
         System.out.println("EQUIP itemID             - Equip weapon/wearable");
+        System.out.println("EXAMINE itemID           - View item description and stats");
         System.out.println("FIGHT [monsterID]        - Fight monster in room");
         System.out.println("PUZZLE [puzzleID]        - Enter puzzle mode");
         System.out.println("STATUS                   - Show player stats");

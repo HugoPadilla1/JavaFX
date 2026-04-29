@@ -289,14 +289,25 @@ public class HydraGameController {
         Button grabButton = wideButton("Grab Selected Room Item");
         grabButton.setOnAction(e -> grabSelectedItem());
 
-        Button dropButton = wideButton("Drop Selected Inventory Item");
-        dropButton.setOnAction(e -> dropSelectedItem());
-
-        Button useButton = wideButton("Use Selected Inventory Item");
+        Button useButton = wideButton("Use");
         useButton.setOnAction(e -> useSelectedItem());
 
-        Button equipButton = wideButton("Equip Selected Inventory Item");
+        Button equipButton = wideButton("Equip");
         equipButton.setOnAction(e -> equipSelectedItem());
+
+        Button dropButton = wideButton("Drop");
+        dropButton.setOnAction(e -> dropSelectedItem());
+
+        Button examineButton = wideButton("Examine");
+        examineButton.setOnAction(e -> examineSelectedItem());
+
+        GridPane itemActionGrid = new GridPane();
+        itemActionGrid.setHgap(6);
+        itemActionGrid.setVgap(6);
+        itemActionGrid.add(useButton, 0, 0);
+        itemActionGrid.add(equipButton, 1, 0);
+        itemActionGrid.add(dropButton, 0, 1);
+        itemActionGrid.add(examineButton, 1, 1);
 
         Button startCombatButton = wideButton("Fight Selected Monster");
         startCombatButton.setOnAction(e -> startCombat());
@@ -333,7 +344,7 @@ public class HydraGameController {
 
         right.getChildren().addAll(
                 section("Room Items", roomItemsList, grabButton),
-                section("Inventory", inventoryList, new HBox(6, useButton, equipButton), dropButton),
+                section("Inventory", inventoryList, itemActionGrid),
                 section("Monsters", monstersList, startCombatButton, combatLabel, combatButtons),
                 section("Puzzles", puzzlesList, openPuzzleButton, puzzleLabel, puzzleAnswerField, puzzleButtons)
         );
@@ -547,12 +558,21 @@ public class HydraGameController {
             return;
         }
         if (item instanceof Weapon || item instanceof Wearable) {
-            player.equipItem(item, player.getInventory());
-            append("Equipped " + item.getItemName() + ".");
+            append(player.equipItem(item, player.getInventory()));
         } else {
             append("That item cannot be equipped.");
         }
         refreshAll();
+    }
+
+    private void examineSelectedItem() {
+        Items item = selectedInventoryItem();
+        if (item == null) {
+            append("Select an inventory item first.");
+            return;
+        }
+        append("\n-- Examine Item --");
+        append(player.examineItem(item));
     }
 
     private void startCombat() {
@@ -732,6 +752,10 @@ public class HydraGameController {
             case "EQUIP":
                 equipByCode(argument);
                 break;
+            case "EXAMINE":
+            case "INSPECT":
+                examineByCode(argument);
+                break;
             case "FIGHT":
                 selectMonsterByCode(argument);
                 startCombat();
@@ -804,6 +828,11 @@ public class HydraGameController {
         equipSelectedItem();
     }
 
+    private void examineByCode(String code) {
+        inventoryList.getSelectionModel().select(findListRow(inventoryList, code));
+        examineSelectedItem();
+    }
+
     private void selectMonsterByCode(String code) {
         if (code != null && !code.trim().isEmpty())
             monstersList.getSelectionModel().select(findListRow(monstersList, code));
@@ -849,7 +878,8 @@ public class HydraGameController {
         append("\n========== TUTORIAL ==========");
         append("Objective: Escape the infected hospital by exploring rooms, collecting supplies, solving puzzles, and surviving combat.");
         append("Movement: Use the compass buttons for N/E/S/W. In lobby/stair rooms, the center up/down buttons appear, but they stay locked until the correct keycard puzzle has been solved.");
-        append("Items: Select an item in the room list and press Grab. Use consumables to heal or buff, and Equip weapons/wearables before fights.");
+        append("Items: Select an item in the room list and press Grab. Inventory actions are arranged Use / Equip / Drop / Examine. Examine shows item details without changing game state.");
+        append("Equipment: Equipped weapons move into the weapon slot and are removed from visible inventory. Replacing a weapon returns the old weapon to inventory and prevents stat stacking.");
         append("Puzzles: Keycard readers are progression locks: K01 solves puzzle 7 for second-floor traversal, and K00 solves puzzle 8 for first-floor traversal.");
         append("Combat: Select a monster and press Fight. Attack, Defend, Flee, or use a consumable from inventory during battle.");
         append("Saving: Use Save Slot 1/2 to preserve your current room, stats, inventory, solved puzzles, room items, and remaining monsters.");
@@ -858,7 +888,7 @@ public class HydraGameController {
 
     private void displayHelp() {
         append("\nCommands: N/E/S/W/U/D, MOVE, LOOK, EXPLORE, ITEMS, MONSTERS, PUZZLES, GRAB itemID, DROP itemID,");
-        append("INVENTORY, USE itemID, EQUIP itemID, FIGHT monsterID, ATTACK, DEFEND, FLEE, PUZZLE puzzleID,");
+        append("INVENTORY, USE itemID, EQUIP itemID, DROP itemID, EXAMINE itemID, FIGHT monsterID, ATTACK, DEFEND, FLEE, PUZZLE puzzleID,");
         append("STATUS, REST, SAVE 1/2, LOAD 1/2, TUTORIAL, CATALOG, GIVE itemID, WORLD, HELP.");
     }
 

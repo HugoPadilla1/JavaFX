@@ -7,12 +7,14 @@ Player class editors: Christopher Young, Samuel Michel
  */
 public class Player extends Entity {
     private String weapon;
+    private Weapon equippedWeapon;
     private int inventorySpace;
     private Room location;
     private ArrayList<Items> inventory;
 
     public Player() {
         weapon = "";
+        equippedWeapon = null;
         inventorySpace = 10;
         location = null;
         inventory = new ArrayList<>();
@@ -43,7 +45,7 @@ public class Player extends Entity {
     }
 
     public void viewTutorial() {
-        System.out.println("Commands: move, explore, grab, drop, inventory, use, equip, fight, puzzle, rest, status, quit");
+        System.out.println("Commands: move, explore, grab, drop, examine, inventory, use, equip, fight, puzzle, rest, status, quit");
     }
 
     public void viewStatus() {
@@ -89,23 +91,90 @@ public class Player extends Entity {
         }
     }
 
-    public void equipItem(Items desiredItem, ArrayList<Items> playerInventory) {
+    public String equipItem(Items desiredItem, ArrayList<Items> playerInventory) {
         if (desiredItem == null || playerInventory == null || !playerInventory.contains(desiredItem)) {
-            System.out.println("Item not found.");
-            return;
+            return "Item not found.";
         }
 
         if (desiredItem instanceof Weapon) {
-            Weapon w = (Weapon) desiredItem;
-            weapon = w.getItemName();
-            w.affectEntity(this);
-            System.out.println("Weapon equipped: " + w.getItemName());
+            return equipWeapon((Weapon) desiredItem, playerInventory);
         } else if (desiredItem instanceof Wearable) {
             ((Wearable) desiredItem).affectEntity(this);
-            System.out.println("Wearable equipped: " + desiredItem.getItemName());
+            return "Wearable equipped: " + desiredItem.getItemName() + ".";
         } else {
-            System.out.println("That item cannot be equipped.");
+            return "That item cannot be equipped.";
         }
+    }
+
+    public String equipWeapon(Weapon newWeapon, ArrayList<Items> playerInventory) {
+        if (newWeapon == null || playerInventory == null || !playerInventory.contains(newWeapon)) {
+            return "Weapon not found in inventory.";
+        }
+
+        if (equippedWeapon != null) {
+            equippedWeapon.removeEntityDamage(this);
+            equippedWeapon.removeEntityHP(this);
+            playerInventory.add(equippedWeapon);
+        }
+
+        playerInventory.remove(newWeapon);
+        equippedWeapon = newWeapon;
+        weapon = newWeapon.getItemName();
+        newWeapon.affectEntity(this);
+        return "Weapon equipped: " + newWeapon.getItemName() + ".";
+    }
+
+    public String unequipWeapon() {
+        if (equippedWeapon == null) {
+            return "No weapon is currently equipped.";
+        }
+
+        Weapon oldWeapon = equippedWeapon;
+        oldWeapon.removeEntityDamage(this);
+        oldWeapon.removeEntityHP(this);
+        inventory.add(oldWeapon);
+        equippedWeapon = null;
+        weapon = "";
+        return "Weapon unequipped: " + oldWeapon.getItemName() + ".";
+    }
+
+    public String examineItem(Items item) {
+        if (item == null) {
+            return "No item selected.";
+        }
+
+        StringBuilder details = new StringBuilder();
+        details.append(item.getItemName()).append("\n");
+        details.append(item.getItemDescription()).append("\n");
+        details.append("Type: ").append(item.getClass().getSimpleName()).append("\n");
+
+        if (item instanceof Weapon) {
+            Weapon w = (Weapon) item;
+            details.append("Attack Bonus: +").append(w.getDamage()).append("\n");
+            if (w.getAddedHealth() != 0) {
+                details.append("Health Bonus: +").append(w.getAddedHealth()).append("\n");
+            }
+        } else if (item instanceof Wearable) {
+            Wearable wearable = (Wearable) item;
+            details.append("Gear Type: ").append(wearable.getType()).append("\n");
+            details.append("Health Bonus: +").append(wearable.getAddMaxHealth()).append("\n");
+            details.append("Defense Bonus: +").append(wearable.getAddDefense()).append("\n");
+            details.append("Speed Bonus: +").append(wearable.getAddSpeed()).append("\n");
+        } else if (item instanceof Consumable) {
+            Consumable c = (Consumable) item;
+            details.append("Health Effect: ").append(c.getAddHealth() - c.getRemoveHealth()).append("\n");
+            details.append("Defense Effect: ").append(c.getAddDefense() - c.getRemoveDefense()).append("\n");
+            details.append("Speed Effect: ").append(c.getAddSpeed() - c.getRemoveSpeed()).append("\n");
+            details.append("Status: ").append(c.getStatus()).append("\n");
+            details.append("Duration: ").append(c.getEffectDuration()).append(" turn(s)\n");
+        } else if (item instanceof KeyItem) {
+            KeyItem key = (KeyItem) item;
+            details.append("Key Type: ").append(key.getKeyType()).append("\n");
+            details.append("Linked Puzzle ID: ").append(key.getLinkedPuzzleID()).append("\n");
+        }
+
+        details.append("Droppable: ").append(item.getDroppable() ? "Yes" : "No");
+        return details.toString();
     }
 
     public int attack(int attack) {
@@ -156,5 +225,14 @@ public class Player extends Entity {
 
     public String getWeapon() {
         return weapon;
+    }
+
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
+    public void setEquippedWeaponDirect(Weapon equippedWeapon) {
+        this.equippedWeapon = equippedWeapon;
+        this.weapon = equippedWeapon == null ? "" : equippedWeapon.getItemName();
     }
 }
