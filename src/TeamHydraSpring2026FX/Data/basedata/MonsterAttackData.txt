@@ -11,7 +11,7 @@ attackID~attackName~multiplier~statusEffect~attackChance~flavorText
 9~Stay Away!~1~none~50~'Get away from here. Shoo!'
 10~Scare~0~special1~40~'Boo!' You felt your spirit draining.
 11~Baton Strike~1~none~40~'I will protect this building with my life. GRRRAA!'
-12~Mighty Blow~1.5~special2~30~The Angel of Death prepares for a powerful strike.
+12~Mighty Blow~1.5~Shock~30~The Angel of Death prepares for a powerful strike.
 13~Deadly Dance~0.6~special3~20~Angel of Death attacks with a multi-hitting attack.
 14~Supreme Suplex~1~paralysis~50~'I will end you.'
 15~Attack Buff~0~special4~10~'HAHAHAHA' \nThe Pain Giver strength increased!

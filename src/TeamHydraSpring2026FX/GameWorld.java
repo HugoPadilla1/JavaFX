@@ -21,6 +21,11 @@ public class GameWorld {
     private final HashMap<Integer, Attack> attackCatalog = new HashMap<>();
     private final HashMap<String, Puzzle> puzzleCatalog = new HashMap<>();
 
+    private static final String SECOND_FLOOR_ACCESS_PUZZLE = "PUZ_07";
+    private static final String FIRST_FLOOR_ACCESS_PUZZLE = "PUZ_08";
+    private static final String SECOND_FLOOR_KEY = "K01";
+    private static final String FIRST_FLOOR_KEY = "K00";
+
     public GameWorld(String roomsFilePath, String itemDataPath, String itemLocationDataPath) throws IOException {
         this(roomsFilePath, itemDataPath, itemLocationDataPath,
                 "Data/basedata/Monsters.txt", "Data/basedata/MonsterAttackData.txt",
@@ -41,6 +46,7 @@ public class GameWorld {
         loadPuzzleRewardItems(puzzleRewardItemsPath);
         loadPuzzleLocations(puzzleLocationPath);
         placeMonstersUsingFallbackMap();
+        createVerticalLobbyTransitions();
     }
 
     private void loadRooms(String roomsFilePath) throws IOException {
@@ -262,6 +268,7 @@ public class GameWorld {
                 puzzle.setHintMessage(data[6].trim());
                 puzzle.setFailMessage("Incorrect answer.");
                 puzzle.setSuccessResult("Puzzle solved.");
+                configureProgressionPuzzleRequirement(code, puzzle);
                 puzzleCatalog.put(code, puzzle);
             }
         }
@@ -339,6 +346,11 @@ public class GameWorld {
                 Puzzle puzzle = puzzleCatalog.get(puzzleCode);
                 if (puzzle == null || isNone(data[1])) continue;
 
+                if (isProgressionAccessPuzzle(puzzleCode)) {
+                    // PUZ_07 and PUZ_08 unlock traversal flags. They should not duplicate keycards.
+                    continue;
+                }
+
                 for (String itemCode : data[1].split(",")) {
                     Items item = itemCatalog.get(itemCode.trim().toUpperCase());
                     if (item != null) puzzle.getRewardItems().add(item);
@@ -383,11 +395,98 @@ public class GameWorld {
         }
     }
 
+
+    private void configureProgressionPuzzleRequirement(String puzzleCode, Puzzle puzzle) {
+        if (puzzle == null || puzzleCode == null) return;
+        if (puzzleCode.equalsIgnoreCase(SECOND_FLOOR_ACCESS_PUZZLE)) {
+            puzzle.setRequiredItemCode(SECOND_FLOOR_KEY);
+            Items item = itemCatalog.get(SECOND_FLOOR_KEY);
+            puzzle.setRequiredItemName(item == null ? "Keycard2" : item.getItemName());
+        } else if (puzzleCode.equalsIgnoreCase(FIRST_FLOOR_ACCESS_PUZZLE)) {
+            puzzle.setRequiredItemCode(FIRST_FLOOR_KEY);
+            Items item = itemCatalog.get(FIRST_FLOOR_KEY);
+            puzzle.setRequiredItemName(item == null ? "Keycard1" : item.getItemName());
+        }
+    }
+
+    public boolean isProgressionAccessPuzzle(String puzzleCode) {
+        return puzzleCode != null && (puzzleCode.equalsIgnoreCase(SECOND_FLOOR_ACCESS_PUZZLE)
+                || puzzleCode.equalsIgnoreCase(FIRST_FLOOR_ACCESS_PUZZLE));
+    }
+
+    public boolean hasItem(Player player, String itemCode) {
+        if (player == null || player.getInventory() == null || itemCode == null) return false;
+        Items catalogItem = itemCatalog.get(itemCode.trim().toUpperCase());
+        String expectedName = catalogItem == null ? "" : catalogItem.getItemName();
+        for (Items item : player.getInventory()) {
+            if (item == null) continue;
+            if (catalogItem != null && item == catalogItem) return true;
+            if (!expectedName.isEmpty() && item.getItemName().equalsIgnoreCase(expectedName)) return true;
+            if (item instanceof KeyItem) {
+                String keyType = ((KeyItem) item).getKeyType() == null ? "" : ((KeyItem) item).getKeyType().toUpperCase();
+                if (itemCode.equalsIgnoreCase(FIRST_FLOOR_KEY) && keyType.contains("ACCESS_F1")) return true;
+                if (itemCode.equalsIgnoreCase(SECOND_FLOOR_KEY) && keyType.contains("ACCESS_F2")) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isPuzzleSolved(String puzzleCode) {
+        Puzzle puzzle = puzzleCatalog.get(puzzleCode == null ? "" : puzzleCode.trim().toUpperCase());
+        return puzzle != null && puzzle.isSolved();
+    }
+
+    public boolean canUseVerticalExit(Player player, Room currentRoom, String direction) {
+        return getVerticalExitBlockReason(player, currentRoom, direction).isEmpty();
+    }
+
+    public String getVerticalExitBlockReason(Player player, Room currentRoom, String direction) {
+        if (currentRoom == null || direction == null) return "";
+        String roomID = currentRoom.getRoomID();
+        String dir = direction.trim().toUpperCase();
+        if (!dir.equals("U") && !dir.equals("D")) return "";
+
+        if ((roomID.equalsIgnoreCase("R05") && dir.equals("D")) || (roomID.equalsIgnoreCase("R12") && dir.equals("U"))) {
+            if (!hasItem(player, SECOND_FLOOR_KEY)) return "The second-floor stairwell reader requires Keycard2 (K01). Check the security room path.";
+            if (!isPuzzleSolved(SECOND_FLOOR_ACCESS_PUZZLE)) return "The second-floor stairwell is locked. Solve puzzle 7 at the upper lobby keycard reader first.";
+        }
+
+        if ((roomID.equalsIgnoreCase("R12") && dir.equals("D")) || (roomID.equalsIgnoreCase("R19") && dir.equals("U"))) {
+            if (!hasItem(player, FIRST_FLOOR_KEY)) return "The first-floor stairwell reader requires Keycard1 (K00). Defeat the monster that drops it first.";
+            if (!isPuzzleSolved(FIRST_FLOOR_ACCESS_PUZZLE)) return "The first-floor stairwell is locked. Solve puzzle 8 at the midfloor lobby keycard reader first.";
+        }
+        return "";
+    }
+
+    /**
+     * Adds vertical navigation between the lobby/stair rooms.
+     * Rooms.txt has narrative stair text but only cardinal exits, so the world
+     * controller supplies U/D exits for the GUI compass.
+     */
+    private void createVerticalLobbyTransitions() {
+        addVerticalExit("R05", "D", "R12", "Stairs leading down to the midfloor lobby.");
+        addVerticalExit("R12", "U", "R05", "Stairs leading up to the upper lobby.");
+        addVerticalExit("R12", "D", "R19", "Stairs leading down to the entrance lobby.");
+        addVerticalExit("R19", "U", "R12", "Stairs leading up to the midfloor lobby.");
+    }
+
+    private void addVerticalExit(String fromRoomID, String direction, String toRoomID, String description) {
+        Room from = gameMap.getRoom(fromRoomID);
+        Room to = gameMap.getRoom(toRoomID);
+        if (from == null || to == null) return;
+        if (!from.hasExit(direction)) {
+            from.addExit(direction, toRoomID);
+        }
+        if (!from.getDoorDescriptions().containsKey(direction.toUpperCase())) {
+            from.addDoorDescription(direction, description);
+        }
+    }
+
     private void placeMonstersUsingFallbackMap() {
         String[][] placement = {
-                {"M01", "R04"}, {"M02", "R06"}, {"M03", "R14"}, {"M04", "R16"},
-                {"M05", "R03"}, {"M06", "R19"}, {"M07", "R12"}, {"M08", "R21"},
-                {"B01", "R19"}, {"B02", "R21"}
+                {"M01", "R04"}, {"M02", "R06"}, {"M03", "R20"}, {"M04", "R16"},
+                {"M05", "R03"}, {"M06", "R19"}, {"M07", "R12"}, {"M08", "R05"},
+                {"B01", "R08"}, {"B02", "R14"}, {"B03", "R21"}
         };
 
         for (String[] pair : placement) {

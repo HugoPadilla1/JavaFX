@@ -17,6 +17,18 @@ import java.util.Map;
  * No FXML is required; the UI is built programmatically so it is easy to drop into the current project.
  */
 public class HydraGameController {
+    private static final String ROOMS_PATH = "Rooms.txt";
+    private static final String ITEM_DATA_PATH = "itemData";
+    private static final String ITEM_LOCATION_PATH = "itemLocationData";
+    private static final String MONSTERS_PATH = "Data/basedata/Monsters.txt";
+    private static final String MONSTER_ATTACK_PATH = "Data/basedata/MonsterAttackData.txt";
+    private static final String PUZZLES_PATH = "puzzles.txt";
+    private static final String PUZZLE_LOCATION_PATH = "puzzleLocationData";
+    private static final String PUZZLE_OUTCOMES_PATH = "puzzles_outcomes.txt";
+    private static final String PUZZLE_REWARDS_PATH = "puzzleRewardItems";
+    private static final String SAVE_SLOT_1 = "hydra_save_slot_1.txt";
+    private static final String SAVE_SLOT_2 = "hydra_save_slot_2.txt";
+
     private GameWorld world;
     private GameMap gameMap;
     private Player player;
@@ -47,6 +59,8 @@ public class HydraGameController {
     private Button eastButton;
     private Button southButton;
     private Button westButton;
+    private Button upButton;
+    private Button downButton;
     private Button attackButton;
     private Button defendButton;
     private Button fleeButton;
@@ -69,17 +83,7 @@ public class HydraGameController {
 
     public void startNewGame() {
         try {
-            world = new GameWorld(
-                    "Rooms.txt",
-                    "itemData",
-                    "itemLocationData",
-                    "Data/basedata/Monsters.txt",
-                    "Data/basedata/MonsterAttackData.txt",
-                    "puzzles.txt",
-                    "puzzleLocationData",
-                    "puzzles_outcomes.txt",
-                    "puzzleRewardItems"
-            );
+            world = createNewWorld();
             gameMap = world.getGameMap();
             player = new Player();
             currentRoom = gameMap.getRoom("R02");
@@ -101,6 +105,20 @@ public class HydraGameController {
             append("ERROR loading game world: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private GameWorld createNewWorld() throws IOException {
+        return new GameWorld(
+                ROOMS_PATH,
+                ITEM_DATA_PATH,
+                ITEM_LOCATION_PATH,
+                MONSTERS_PATH,
+                MONSTER_ATTACK_PATH,
+                PUZZLES_PATH,
+                PUZZLE_LOCATION_PATH,
+                PUZZLE_OUTCOMES_PATH,
+                PUZZLE_REWARDS_PATH
+        );
     }
 
     private Parent createHeader() {
@@ -175,7 +193,7 @@ public class HydraGameController {
 
     private Parent createNavigationPane() {
         VBox nav = panelBox("Movement");
-        nav.setPrefWidth(170);
+        nav.setPrefWidth(190);
 
         GridPane compass = new GridPane();
         compass.setHgap(6);
@@ -185,14 +203,22 @@ public class HydraGameController {
         eastButton = actionButton("E");
         southButton = actionButton("S");
         westButton = actionButton("W");
+        upButton = actionButton("↑");
+        downButton = actionButton("↓");
 
         northButton.setOnAction(e -> move("N"));
         eastButton.setOnAction(e -> move("E"));
         southButton.setOnAction(e -> move("S"));
         westButton.setOnAction(e -> move("W"));
+        upButton.setOnAction(e -> move("U"));
+        downButton.setOnAction(e -> move("D"));
+
+        VBox verticalMoveBox = new VBox(3, upButton, downButton);
+        verticalMoveBox.setStyle("-fx-alignment: center;");
 
         compass.add(northButton, 1, 0);
         compass.add(westButton, 0, 1);
+        compass.add(verticalMoveBox, 1, 1);
         compass.add(eastButton, 2, 1);
         compass.add(southButton, 1, 2);
 
@@ -205,10 +231,44 @@ public class HydraGameController {
         Button restButton = wideButton("Rest");
         restButton.setOnAction(e -> rest());
 
+        Button tutorialButton = wideButton("Tutorial");
+        tutorialButton.setOnAction(e -> displayTutorial());
+
         Button newGameButton = wideButton("New Game");
         newGameButton.setOnAction(e -> startNewGame());
 
-        nav.getChildren().addAll(compass, lookButton, exploreButton, restButton, new Separator(), newGameButton);
+        Label saveLabel = new Label("Save / Load");
+        saveLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+
+        Button saveSlot1Button = wideButton("Save Slot 1");
+        Button loadSlot1Button = wideButton("Load Slot 1");
+        Button saveSlot2Button = wideButton("Save Slot 2");
+        Button loadSlot2Button = wideButton("Load Slot 2");
+
+        saveSlot1Button.setOnAction(e -> saveGame(1));
+        loadSlot1Button.setOnAction(e -> loadGame(1));
+        saveSlot2Button.setOnAction(e -> saveGame(2));
+        loadSlot2Button.setOnAction(e -> loadGame(2));
+
+        GridPane saveGrid = new GridPane();
+        saveGrid.setHgap(5);
+        saveGrid.setVgap(5);
+        saveGrid.add(saveSlot1Button, 0, 0);
+        saveGrid.add(loadSlot1Button, 1, 0);
+        saveGrid.add(saveSlot2Button, 0, 1);
+        saveGrid.add(loadSlot2Button, 1, 1);
+
+        nav.getChildren().addAll(
+                compass,
+                lookButton,
+                exploreButton,
+                restButton,
+                tutorialButton,
+                new Separator(),
+                newGameButton,
+                saveLabel,
+                saveGrid
+        );
         return nav;
     }
 
@@ -360,6 +420,12 @@ public class HydraGameController {
             return;
         }
 
+        String blockReason = world.getVerticalExitBlockReason(player, currentRoom, direction);
+        if (!blockReason.isEmpty()) {
+            append(blockReason);
+            return;
+        }
+
         Room nextRoom = gameMap.getRoom(currentRoom.getExit(direction));
         if (nextRoom == null) {
             append("That exit points to a missing room.");
@@ -395,6 +461,14 @@ public class HydraGameController {
         append("Items: " + (currentRoom.getItems().isEmpty() ? "none" : currentRoom.getItems().keySet()));
         append("Puzzles: " + (currentRoom.getPuzzles().isEmpty() ? "none" : currentRoom.getPuzzles().keySet()));
         append("Monsters: " + (currentRoom.getMonsters().isEmpty() ? "none" : currentRoom.getMonsters().keySet()));
+        if (currentRoom.hasExit("U")) {
+            String reason = world.getVerticalExitBlockReason(player, currentRoom, "U");
+            append("Up stairs: " + (reason.isEmpty() ? "unlocked" : reason));
+        }
+        if (currentRoom.hasExit("D")) {
+            String reason = world.getVerticalExitBlockReason(player, currentRoom, "D");
+            append("Down stairs: " + (reason.isEmpty() ? "unlocked" : reason));
+        }
         refreshAll();
     }
 
@@ -574,6 +648,29 @@ public class HydraGameController {
         refreshAll();
     }
 
+    private void saveGame(int slot) {
+        String path = slot == 1 ? SAVE_SLOT_1 : SAVE_SLOT_2;
+        append(GameSaveManager.save(world, player, currentRoom, path));
+    }
+
+    private void loadGame(int slot) {
+        String path = slot == 1 ? SAVE_SLOT_1 : SAVE_SLOT_2;
+        try {
+            world = createNewWorld();
+            gameMap = world.getGameMap();
+            player = new Player();
+            currentRoom = GameSaveManager.load(world, player, path);
+            activeCombat = null;
+            activePuzzle = null;
+            clearOutput();
+            append("Loaded save slot " + slot + ".");
+            appendRoomEntry();
+            refreshAll();
+        } catch (Exception e) {
+            append("Load failed: " + e.getMessage());
+        }
+    }
+
     private void runCommand() {
         String input = commandField.getText() == null ? "" : commandField.getText().trim();
         commandField.clear();
@@ -589,11 +686,13 @@ public class HydraGameController {
             case "E":
             case "S":
             case "W":
+            case "U":
+            case "D":
                 move(command);
                 break;
             case "MOVE":
                 if (!argument.isEmpty()) move(argument.substring(0, 1));
-                else append("Usage: MOVE N/E/S/W");
+                else append("Usage: MOVE N/E/S/W/U/D");
                 break;
             case "LOOK":
             case "ROOM":
@@ -659,6 +758,17 @@ public class HydraGameController {
                 break;
             case "WORLD":
                 displayWorldSummary();
+                break;
+            case "SAVE":
+                if (argument.equals("2")) saveGame(2);
+                else saveGame(1);
+                break;
+            case "LOAD":
+                if (argument.equals("2")) loadGame(2);
+                else loadGame(1);
+                break;
+            case "TUTORIAL":
+                displayTutorial();
                 break;
             case "HELP":
                 displayHelp();
@@ -735,10 +845,21 @@ public class HydraGameController {
         append("Puzzle reward groups: " + world.getPuzzleRewards().size());
     }
 
+    private void displayTutorial() {
+        append("\n========== TUTORIAL ==========");
+        append("Objective: Escape the infected hospital by exploring rooms, collecting supplies, solving puzzles, and surviving combat.");
+        append("Movement: Use the compass buttons for N/E/S/W. In lobby/stair rooms, the center up/down buttons appear, but they stay locked until the correct keycard puzzle has been solved.");
+        append("Items: Select an item in the room list and press Grab. Use consumables to heal or buff, and Equip weapons/wearables before fights.");
+        append("Puzzles: Keycard readers are progression locks: K01 solves puzzle 7 for second-floor traversal, and K00 solves puzzle 8 for first-floor traversal.");
+        append("Combat: Select a monster and press Fight. Attack, Defend, Flee, or use a consumable from inventory during battle.");
+        append("Saving: Use Save Slot 1/2 to preserve your current room, stats, inventory, solved puzzles, room items, and remaining monsters.");
+        append("Console box: You can also type commands like STATUS, INVENTORY, SAVE 1, LOAD 2, TUTORIAL, or HELP.");
+    }
+
     private void displayHelp() {
-        append("\nCommands: N/E/S/W, MOVE, LOOK, EXPLORE, ITEMS, MONSTERS, PUZZLES, GRAB itemID, DROP itemID,");
+        append("\nCommands: N/E/S/W/U/D, MOVE, LOOK, EXPLORE, ITEMS, MONSTERS, PUZZLES, GRAB itemID, DROP itemID,");
         append("INVENTORY, USE itemID, EQUIP itemID, FIGHT monsterID, ATTACK, DEFEND, FLEE, PUZZLE puzzleID,");
-        append("STATUS, REST, CATALOG, GIVE itemID, WORLD, HELP.");
+        append("STATUS, REST, SAVE 1/2, LOAD 1/2, TUTORIAL, CATALOG, GIVE itemID, WORLD, HELP.");
     }
 
     private void appendRoomEntry() {
@@ -747,6 +868,16 @@ public class HydraGameController {
         if (currentRoom.isSafeRoom()) append("[Safe room: REST is available.]");
         append("Room ID: " + currentRoom.getRoomID());
         append("Available exits: " + currentRoom.getExits().keySet());
+        if (currentRoom.hasExit("U") || currentRoom.hasExit("D")) {
+            if (currentRoom.hasExit("U")) {
+                String reason = world.getVerticalExitBlockReason(player, currentRoom, "U");
+                append("Up stairs: " + (reason.isEmpty() ? "unlocked" : "locked - " + reason));
+            }
+            if (currentRoom.hasExit("D")) {
+                String reason = world.getVerticalExitBlockReason(player, currentRoom, "D");
+                append("Down stairs: " + (reason.isEmpty() ? "unlocked" : "locked - " + reason));
+            }
+        }
         if (!currentRoom.getItems().isEmpty()) append("Items here: " + currentRoom.getItems().keySet());
         if (!currentRoom.getPuzzles().isEmpty()) append("Puzzles here: " + currentRoom.getPuzzles().keySet());
         if (!currentRoom.getMonsters().isEmpty()) append("Monsters here: " + currentRoom.getMonsters().keySet());
@@ -845,10 +976,20 @@ public class HydraGameController {
         weaponLabel.setText(player.getWeapon() == null || player.getWeapon().isEmpty() ? "None" : player.getWeapon());
         inventoryCapLabel.setText(player.getInventory().size() + "/" + player.getInventorySpace());
 
-        northButton.setDisable(!currentRoom.hasExit("N") || !currentRoom.getMonsters().isEmpty());
-        eastButton.setDisable(!currentRoom.hasExit("E") || !currentRoom.getMonsters().isEmpty());
-        southButton.setDisable(!currentRoom.hasExit("S") || !currentRoom.getMonsters().isEmpty());
-        westButton.setDisable(!currentRoom.hasExit("W") || !currentRoom.getMonsters().isEmpty());
+        boolean monsterBlocksExit = !currentRoom.getMonsters().isEmpty();
+        northButton.setDisable(!currentRoom.hasExit("N") || monsterBlocksExit);
+        eastButton.setDisable(!currentRoom.hasExit("E") || monsterBlocksExit);
+        southButton.setDisable(!currentRoom.hasExit("S") || monsterBlocksExit);
+        westButton.setDisable(!currentRoom.hasExit("W") || monsterBlocksExit);
+
+        boolean hasUp = currentRoom.hasExit("U");
+        boolean hasDown = currentRoom.hasExit("D");
+        upButton.setVisible(hasUp);
+        upButton.setManaged(hasUp);
+        downButton.setVisible(hasDown);
+        downButton.setManaged(hasDown);
+        upButton.setDisable(!hasUp || monsterBlocksExit || !world.canUseVerticalExit(player, currentRoom, "U"));
+        downButton.setDisable(!hasDown || monsterBlocksExit || !world.canUseVerticalExit(player, currentRoom, "D"));
 
         roomItemsList.setItems(FXCollections.observableArrayList(roomItemRows()));
         inventoryList.setItems(FXCollections.observableArrayList(inventoryRows()));
@@ -906,6 +1047,8 @@ public class HydraGameController {
         eastButton.setDisable(true);
         southButton.setDisable(true);
         westButton.setDisable(true);
+        upButton.setDisable(true);
+        downButton.setDisable(true);
         attackButton.setDisable(true);
         defendButton.setDisable(true);
         fleeButton.setDisable(true);

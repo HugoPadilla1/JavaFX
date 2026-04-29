@@ -9,6 +9,9 @@ import java.util.Scanner;
  * This is intentionally controller-heavy so the next step can swap console output for JavaFX views.
  */
 public class GameTester {
+    private static final String SAVE_SLOT_1 = "hydra_console_save_slot_1.txt";
+    private static final String SAVE_SLOT_2 = "hydra_console_save_slot_2.txt";
+
     private GameWorld world;
     private GameMap gameMap;
     private Room currentRoom;
@@ -63,6 +66,8 @@ public class GameTester {
                 case "E":
                 case "S":
                 case "W":
+                case "U":
+                case "D":
                     moveRoom(command);
                     break;
                 case "MOVE":
@@ -124,6 +129,15 @@ public class GameTester {
                 case "WORLD":
                     world.printWorldSummary();
                     break;
+                case "SAVE":
+                    saveGame(argument.equals("2") ? 2 : 1);
+                    break;
+                case "LOAD":
+                    loadGame(argument.equals("2") ? 2 : 1);
+                    break;
+                case "TUTORIAL":
+                    displayTutorial();
+                    break;
                 case "HELP":
                     displayHelp();
                     break;
@@ -144,7 +158,7 @@ public class GameTester {
 
     private void moveCommand(String argument) {
         if (argument.isEmpty()) {
-            System.out.println("Usage: MOVE N/E/S/W");
+            System.out.println("Usage: MOVE N/E/S/W/U/D");
             return;
         }
         moveRoom(argument.substring(0, 1).toUpperCase());
@@ -159,6 +173,12 @@ public class GameTester {
 
         if (!currentRoom.getMonsters().isEmpty()) {
             System.out.println("A monster blocks your escape. Defeat it or flee during combat first.");
+            return;
+        }
+
+        String blockReason = world.getVerticalExitBlockReason(player, currentRoom, direction);
+        if (!blockReason.isEmpty()) {
+            System.out.println(blockReason);
             return;
         }
 
@@ -183,6 +203,14 @@ public class GameTester {
         currentRoom.displayRoomEntry();
         System.out.println("Room ID: " + currentRoom.getRoomID());
         System.out.println("Available exits: " + currentRoom.getExits().keySet());
+        if (currentRoom.hasExit("U")) {
+            String reason = world.getVerticalExitBlockReason(player, currentRoom, "U");
+            System.out.println("Up stairs: " + (reason.isEmpty() ? "unlocked" : "locked - " + reason));
+        }
+        if (currentRoom.hasExit("D")) {
+            String reason = world.getVerticalExitBlockReason(player, currentRoom, "D");
+            System.out.println("Down stairs: " + (reason.isEmpty() ? "unlocked" : "locked - " + reason));
+        }
         if (!currentRoom.getItems().isEmpty()) System.out.println("Items here: " + currentRoom.getItems().keySet());
         if (!currentRoom.getPuzzles().isEmpty())
             System.out.println("Puzzles here: " + currentRoom.getPuzzles().keySet());
@@ -474,6 +502,37 @@ public class GameTester {
 
     private String formatItem(Items item) {
         return item == null ? "null" : item.getItemName() + " | " + item.getClass().getSimpleName() + " | " + item.getItemDescription();
+    }
+
+    private void saveGame(int slot) {
+        String path = slot == 1 ? SAVE_SLOT_1 : SAVE_SLOT_2;
+        System.out.println(GameSaveManager.save(world, player, currentRoom, path));
+    }
+
+    private void loadGame(int slot) {
+        String path = slot == 1 ? SAVE_SLOT_1 : SAVE_SLOT_2;
+        try {
+            world = new GameWorld("Rooms.txt", "itemData", "itemLocationData",
+                    "Data/basedata/Monsters.txt", "Data/basedata/MonsterAttackData.txt",
+                    "puzzles.txt", "puzzleLocationData", "puzzles_outcomes.txt", "puzzleRewardItems");
+            gameMap = world.getGameMap();
+            player = new Player();
+            currentRoom = GameSaveManager.load(world, player, path);
+            System.out.println("Loaded save slot " + slot + ".");
+            displayCurrentRoom();
+        } catch (Exception e) {
+            System.out.println("Load failed: " + e.getMessage());
+        }
+    }
+
+    private void displayTutorial() {
+        System.out.println("\n========== TUTORIAL ==========");
+        System.out.println("Objective: Escape the infected hospital by exploring rooms, collecting supplies, solving puzzles, and surviving combat.");
+        System.out.println("Movement: Use N/E/S/W for normal movement. In lobby/stair rooms, U/D move between floors.");
+        System.out.println("Items: GRAB itemID, USE itemID for consumables/key items, and EQUIP itemID for weapons/wearables.");
+        System.out.println("Puzzles: PUZZLE puzzleID opens puzzle mode; solved puzzles can add rewards.");
+        System.out.println("Combat: FIGHT monsterID starts combat; ATTACK/DEFEND/FLEE handle combat turns.");
+        System.out.println("Saving: SAVE 1, SAVE 2, LOAD 1, or LOAD 2.");
     }
 
     private void displayHelp() {

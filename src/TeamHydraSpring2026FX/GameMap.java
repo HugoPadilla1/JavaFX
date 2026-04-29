@@ -80,4 +80,8 @@ public class GameMap {
     public Room getRoom(String roomID) {
         return rooms.get(roomID);
     }
+
+    public HashMap<String, Room> getRooms() {
+        return rooms;
+    }
 }

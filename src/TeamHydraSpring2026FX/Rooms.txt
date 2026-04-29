@@ -131,6 +131,7 @@ ROOM:R18:Cafeteria:false
 DESC:A large room with lots of tables and chairs. The tables are arranged in rows across the tiled floor. Some trays and cups are left behind on the surfaces. A serving counter stretches along one side of the room with glass covering the food area.
 DOOR:W:Small wooden double doors on the west wall.
 EXIT:W:R17
+EXIT:E:R19
 END
 
 ROOM:R19:Entrance Lobby:false

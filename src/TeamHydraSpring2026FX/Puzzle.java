@@ -16,6 +16,8 @@ public class Puzzle {
     private String penalty;
     private String reward;
     private java.util.ArrayList<Items> rewardItems;
+    private String requiredItemCode;
+    private String requiredItemName;
 
     private Room currentRoom;  // Reference to the current room (set later)
     private Player player;     // Reference to the player (set later)
@@ -228,6 +230,44 @@ public class Puzzle {
     }
 
     /**
+     * Some progression puzzles represent keycard readers. These require a
+     * specific KeyItem to be in the player's inventory before the answer can
+     * be accepted. GameWorld sets these requirements when it loads puzzle data.
+     */
+    public boolean hasRequiredItem(Player player) {
+        if (requiredItemCode == null || requiredItemCode.trim().isEmpty() || requiredItemCode.equalsIgnoreCase("NONE")) {
+            return true;
+        }
+        if (player == null || player.getInventory() == null) {
+            return false;
+        }
+        String expectedName = requiredItemName == null ? "" : requiredItemName.trim();
+        for (Items item : player.getInventory()) {
+            if (item == null) continue;
+            if (!expectedName.isEmpty() && item.getItemName().equalsIgnoreCase(expectedName)) {
+                return true;
+            }
+            if (item instanceof KeyItem) {
+                KeyItem key = (KeyItem) item;
+                String keyType = key.getKeyType() == null ? "" : key.getKeyType().toUpperCase();
+                if (requiredItemCode.equalsIgnoreCase("K00") && keyType.contains("ACCESS_F1")) return true;
+                if (requiredItemCode.equalsIgnoreCase("K01") && keyType.contains("ACCESS_F2")) return true;
+            }
+        }
+        return false;
+    }
+
+    public String getRequiredItemMessage() {
+        if (requiredItemCode == null || requiredItemCode.trim().isEmpty() || requiredItemCode.equalsIgnoreCase("NONE")) {
+            return "";
+        }
+        String itemLabel = requiredItemName == null || requiredItemName.trim().isEmpty()
+                ? requiredItemCode
+                : requiredItemName + " (" + requiredItemCode + ")";
+        return "This puzzle requires " + itemLabel + ". Find the key item first.";
+    }
+
+    /**
      * Solves a puzzle and returns displayable messages for the UI/console.
      */
     public java.util.ArrayList<String> submitAnswer(String playerAnswer, Player player, Room room) {
@@ -239,6 +279,12 @@ public class Puzzle {
         if (remainingAttempts <= 0) {
             messages.add(failMessage);
             messages.addAll(applyPenaltyToPlayer(player));
+            return messages;
+        }
+
+        if (!hasRequiredItem(player)) {
+            messages.add(getRequiredItemMessage());
+            messages.add("Access denied. The keycard reader will not accept input yet.");
             return messages;
         }
 
@@ -371,6 +417,22 @@ public class Puzzle {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getRequiredItemCode() {
+        return requiredItemCode;
+    }
+
+    public void setRequiredItemCode(String requiredItemCode) {
+        this.requiredItemCode = requiredItemCode;
+    }
+
+    public String getRequiredItemName() {
+        return requiredItemName;
+    }
+
+    public void setRequiredItemName(String requiredItemName) {
+        this.requiredItemName = requiredItemName;
     }
 
 }
